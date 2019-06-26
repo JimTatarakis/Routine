@@ -10,10 +10,6 @@ module.exports = function(sequelize, DataTypes) {
     completed: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
-    },
-    assigned: {
-      type: DataTypes.STRING,
-      defaultValue: "open"
     }
   });
   // Associate to User
