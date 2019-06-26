@@ -1,0 +1,31 @@
+//landing
+nav
+
+auth
+
+footer
+
+
+//user home
+nav
+
+urgent tasks table (collection via materialize or checkboxes?? : clicked, completed:true, assigns id to task)
+
+tasks table (collection via materialize or checkboxes?? : clicked, completed:true, assigns id to task)
+
+open tasks table (buttons : clicked, add themselves to the user and refresh page)
+
+footer
+
+
+//manager home
+
+nav
+
+open tasks table (collection : with drop down to assign to user)
+
+add tasks table (simple form : choose user or 'open' and text input for task name)
+
+
+footer
+
