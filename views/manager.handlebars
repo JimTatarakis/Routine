@@ -1,5 +1,15 @@
 <div id="manager">
   <div class="container">
+    <nav class="navbar navbar-expand bg-white fixed-top ">
+      <a class="navbar-brand" href="/">
+        <img src="/images/logo.png" width="100" height="35" class="d-inline-block align-top logo" alt="">
+      </a>
+      <ul class="navbar-nav">
+        <li><a href="#">FEATURES</a></li>
+        <li><a href="#footer">CONTACT</a></li>
+        <li><a href="login">LOGIN</a></li>
+      </ul>
+    </nav>
     <div class="row">
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
@@ -17,40 +27,85 @@
           </div>
           <button id="submit" class="btn btn-primary float-right">Add Task</button>
         </form>
-        <h3>New Tasks:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-
-        <h3>Open Tasks:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-
-        <h3>Completed Tasks:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-
       </div>
-    </div>
-  </div>
-</div>
+      <div class="row">
+        <div class="col-4 ">
+          <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Today's Tasks</h5>
+              <p class="card-text">Tasks to be completed by end of day.</p>
+            </div>
+            <ul id="example-list" class="list-group list-group-flush list-group">
+              {{#each examples}}
+              <li class="list-group-item" data-id="{{this.id}}">
+                <a href="example/{{this.id}}">{{this.text}}</a>
+                <button class="btn btn-danger float-right delete">ｘ</button>
+              </li>
+               {{/each}}
+            </ul>
+        </div>
+        
+        </div>
+        <div class="col-4 ">
+          <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Pending Tasks</h5>
+              <p class="card-text">Tasks to be completed by end of day.</p>
+            </div>
+            <ul id="example-list" class="list-group list-group-flush list-group">
+              {{#each examples}}
+              <li class="list-group-item" data-id="{{this.id}}">
+                <a href="example/{{this.id}}">{{this.text}}</a>
+                <button class="btn btn-danger float-right delete">ｘ</button>
+              </li>
+               {{/each}}
+            </ul>
+              </div>
+        </div>
+        <div class="col-4 ">
+         <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Today's Tasks</h5>
+              <p class="card-text">Tasks to be completed by end of day.</p>
+            </div>
+            <ul id="example-list" class="list-group list-group-flush list-group">
+              {{#each examples}}
+              <li class="list-group-item" data-id="{{this.id}}">
+                <a href="example/{{this.id}}">{{this.text}}</a>
+                <button class="btn btn-danger float-right delete">ｘ</button>
+              </li>
+               {{/each}}
+            </ul>
+        </div>
+        </div>
+    
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+    </div>
+    <!-- Footer -->
+    <footer id="footer">
+      <!-- Social buttons -->
+      <ul class=" list-inline text-center">
+        <li class="list-inline-item">
+          <a href="https://github.com/jeraithel" class="btn-floating btn-fb mx-1">
+            <i class="fab fa-github"> Justin Raithel</i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a href="https://github.com/iJmTatarakis" class="btn-floating btn-tw mx-1">
+            <i class="fab fa-github"> Jim Tatarakis </i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a href="https://github.com/kellidragon" class="btn-floating btn-dribbble mx-1">
+            <i class="fab fa-github"> Kelli Dragon</i>
+          </a>
+        </li>
+      </ul>
+    </footer>
+  </div>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/js/index.js"></script>
