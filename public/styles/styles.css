@@ -3,9 +3,13 @@
   font-family: 'Quicksand', sans-serif;
 }
 
-.home, #login{
+.home, #login, #manager, #user{
   max-width: 1280px;
   width: 100%;
+}
+
+.logo{
+  margin-left: 30px;
 }
 
 body{
@@ -95,8 +99,17 @@ margin-top: 200px;
   line-height: 2.5;
 }
 
-.logo{
-  margin-left: 30px;
+.taskRow{
+  margin-top: 100px;
+}
+
+.addTaskRow{
+margin-top: 100px;
+text-align: center;
+}
+
+#addTask{
+  margin-top: 100px;
 }
 
 footer{

@@ -10,102 +10,94 @@
         <li><a href="login">LOGIN</a></li>
       </ul>
     </nav>
-    <div class="row">
+    <div class="row addTaskRow">
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
-        <h2>Manager View</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Assgin Task To:</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text"
-              placeholder="Employee Name">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Description of Task:</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description"
-              placeholder="Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Add Task</button>
-        </form>
+        <h4>Would you like to assign a new task?</h4>
+        <hr>
+        <br>
+        <a href="#addTask"><button  class="btn btn-default">YES</button></a>
+        <a href="#taskIcon"><button  class="btn btn-default">NO</button></a>
+        <br><br><br><br>
       </div>
-      <div class="row">
-        <div class="col-4 ">
-          <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Today's Tasks</h5>
-              <p class="card-text">Tasks to be completed by end of day.</p>
-            </div>
-            <ul id="example-list" class="list-group list-group-flush list-group">
-              {{#each examples}}
-              <li class="list-group-item" data-id="{{this.id}}">
-                <a href="example/{{this.id}}">{{this.text}}</a>
-                <button class="btn btn-danger float-right delete">ｘ</button>
-              </li>
-               {{/each}}
-            </ul>
-        </div>
-        
-        </div>
-        <div class="col-4 ">
-          <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Pending Tasks</h5>
-              <p class="card-text">Tasks to be completed by end of day.</p>
-            </div>
-            <ul id="example-list" class="list-group list-group-flush list-group">
-              {{#each examples}}
-              <li class="list-group-item" data-id="{{this.id}}">
-                <a href="example/{{this.id}}">{{this.text}}</a>
-                <button class="btn btn-danger float-right delete">ｘ</button>
-              </li>
-               {{/each}}
-            </ul>
+      <div class="container">
+        <div class="row taskRow" id="taskIcon">
+          <div class="col-4">
+            <div class="card" style="width: 18rem;">
+              <img src="images/daily.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Today's Tasks</h5>
+                <p class="card-text">Daily list of tasks.</p>
               </div>
-        </div>
-        <div class="col-4 ">
-         <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Today's Tasks</h5>
-              <p class="card-text">Tasks to be completed by end of day.</p>
+              <ul id="example-list" class="list-group list-group-flush list-group">
+                {{#each examples}}
+                <li class="list-group-item" data-id="{{this.id}}">
+                  <a href="example/{{this.id}}">{{this.text}}</a>
+                  <button class="btn btn-danger float-right delete">ｘ</button>
+                </li>
+                {{/each}}
+              </ul>
             </div>
-            <ul id="example-list" class="list-group list-group-flush list-group">
-              {{#each examples}}
-              <li class="list-group-item" data-id="{{this.id}}">
-                <a href="example/{{this.id}}">{{this.text}}</a>
-                <button class="btn btn-danger float-right delete">ｘ</button>
-              </li>
-               {{/each}}
-            </ul>
-        </div>
-        </div>
-    
 
-    </div>
-    <!-- Footer -->
-    <footer id="footer">
-      <!-- Social buttons -->
-      <ul class=" list-inline text-center">
-        <li class="list-inline-item">
-          <a href="https://github.com/jeraithel" class="btn-floating btn-fb mx-1">
-            <i class="fab fa-github"> Justin Raithel</i>
-          </a>
-        </li>
-        <li class="list-inline-item">
-          <a href="https://github.com/iJmTatarakis" class="btn-floating btn-tw mx-1">
-            <i class="fab fa-github"> Jim Tatarakis </i>
-          </a>
-        </li>
-        <li class="list-inline-item">
-          <a href="https://github.com/kellidragon" class="btn-floating btn-dribbble mx-1">
-            <i class="fab fa-github"> Kelli Dragon</i>
-          </a>
-        </li>
-      </ul>
-    </footer>
-  </div>
+          </div>
+          <div class="col-4">
+            <div class="card" style="width: 18rem;">
+              <img src="images/pending.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Pending Tasks</h5>
+                <p class="card-text">Tasks that still need to be completed by end of day.</p>
+              </div>
+              <ul id="example-list" class="list-group list-group-flush list-group">
+                {{#each examples}}
+                <li class="list-group-item" data-id="{{this.id}}">
+                  <a href="example/{{this.id}}">{{this.text}}</a>
+                  <button class="btn btn-danger float-right delete">ｘ</button>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+          <div class="col-4 ">
+            <div class="card" style="width: 18rem;">
+              <img src="images/completed.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Completed Tasks Tasks</h5>
+                <p class="card-text">Tasks that been marked as completed</p>
+              </div>
+              <ul id="example-list" class="list-group list-group-flush list-group">
+                {{#each examples}}
+                <li class="list-group-item" data-id="{{this.id}}">
+                  <a href="example/{{this.id}}">{{this.text}}</a>
+                  <button class="btn btn-danger float-right delete">ｘ</button>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
 
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="/js/index.js"></script>
+      </div>
+  
+      <div class="container" >
+      <div class="row addTaskRow">
+        <div class="col-8 offset-2">
+             <h3 id="addTask">Add a new task below:</h3>
+             <hr>
+          <form class="clearfix mb-4" action="POST">
+            <div class="form-group">
+              <label for="example-text">Assgin Task To:</label>
+              <input type="text" id="example-text" class="form-control" aria-describedby="example-text"
+                placeholder="Employee Name">
+            </div>
+            <div class="form-group">
+              <label for="example-description">Description of Task:</label>
+              <textarea class="form-control" id="example-description" aria-describedby="example-description"
+                placeholder="Description"></textarea>
+            </div>
+            <button id="submit" class="btn btn-default float-right">Add Task</button>
+          </form>
+
+        </div>
+</div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/js/index.js"></script>

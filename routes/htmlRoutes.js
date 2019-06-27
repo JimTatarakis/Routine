@@ -32,7 +32,7 @@ module.exports = function(app) {
   app.get("/manager", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
       res.render("manager", {
-        msg: "Welcome!",
+        msg: "Welcome, Manager!",
         examples: dbExamples
       });
     });
