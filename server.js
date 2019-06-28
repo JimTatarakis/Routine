@@ -1,31 +1,45 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
+var passport = require("passport");
+var Strategy = require("passport-local").Strategy;
 
 var db = require("./models");
 
-var app = express();
-var PORT = process.env.PORT || 3000;
-
-var passport = require("passport"),
-  LocalStrategy = require("passport-local").Strategy;
-
 passport.use(
-  new LocalStrategy(function(username, password, done) {
-    User.findOne({ username: username }, function(err, user) {
-      if (err) {
-        return done(err);
-      }
+  new Strategy(function (username, password, done) {
+    console.log("entering username to search: " + username);
+    db.User.findOne({ where: { username: username } }).then(function(user) {
+      console.log(user);
+      console.log("searching for username");
       if (!user) {
         return done(null, false, { message: "Incorrect username." });
       }
-      if (!user.validPassword(password)) {
+      else if (!user.validPassword(password)) {
         return done(null, false, { message: "Incorrect password." });
       }
       return done(null, user);
     });
   })
 );
+
+passport.serializeUser(function (user, done) {
+  console.log("Serialized!");
+  done(null, user.id);
+});
+
+passport.deserializeUser(function (id, done) {
+  db.User.findOne({ where: { id: id } }).then(function(user) {
+    if (user) {
+      done(null, user.get());
+    } else {
+      done(user.errors, null);
+    }
+  });
+});
+
+var app = express();
+var PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -40,17 +54,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser(function(user, done) {
-  console.log("Serialized!");
-  done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
-
 // Handlebars
 app.engine(
   "handlebars",
@@ -60,19 +63,27 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
+app.post(
+  "/login",
+  passport.authenticate("local", { failureRedirect: "/login" }),
+  function(req, res) {
+    res.redirect("/");
+  }
+);
+
 // Routes
 require("./routes/managerRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
 // Login authentication
-app.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-    failureFlash: true
-  })
-);
+// app.post(
+//   "/login",
+//   passport.authenticate("local", {
+//     successRedirect: "/",
+//     failureRedirect: "/login",
+//     failureFlash: true
+//   })
+// );
 
 var syncOptions = { force: false };
 
@@ -83,8 +94,8 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
+db.sequelize.sync(syncOptions).then(function () {
+  app.listen(PORT, function () {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
