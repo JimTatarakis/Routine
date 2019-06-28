@@ -32,7 +32,7 @@ module.exports = function (app) {
   });
 
   // POST route : add task
-  app.post("/api/users", function (req, res) {
+  app.post("/api/register", function (req, res) {
     db.User.create({
       username: req.body.username,
       password: req.body.password,
@@ -59,9 +59,10 @@ module.exports = function (app) {
       }
     }).then(function (data) {
       res.json({ delete: true });
-    });
+    }).catch(function(err) {
+      res.json(err);;
   });
-
+});
   // PUT route
   app.put("/api/tasks", function (req, res) {
     db.Task.update(
@@ -76,7 +77,9 @@ module.exports = function (app) {
     ).then(function (data) {
       console.log("this is working!");
       res.json({ update: true });
-    });
+    }).catch(function(err) {
+      res.json(err);;
+  });
   });
 };
 

@@ -1,0 +1,51 @@
+<div id="register">
+    <div class="container ">
+        <div class="row loginRow">
+            <div class="col loginCont">
+
+                {{!-- <div class="form-group"> --}}
+                <nav class="navbar navbar-expand bg-white fixed-top ">
+                    <a class="navbar-brand" href="/">
+                        <img src="/images/logo.png" width="100" height="35" class="d-inline-block align-top logo"
+                            alt="">
+                    </a>
+                    <ul class="navbar-nav">
+                        <li><a href="#">FEATURES</a></li>
+                        <li><a href="#footer">CONTACT</a></li>
+                        <li><a href="login">LOGIN</a></li>
+                    </ul>
+                </nav>
+
+                <!-- <h1>{{msg}}</h1> -->
+                <form action="/api/register" method="post">
+        <div>
+            <label>Username:</label>
+            <input type="text" name="username" />
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="password" name="password" />
+        </div>
+        <div>
+            <label>Display Name:</label>
+            <input type="text" name="displayName" />
+        </div>
+        <div>
+            <label>Email:</label>
+            <input type="email" name="email" />
+        </div>
+        <div>
+            <input type="submit" value="Create User" />
+        </div>
+    </form>
+                <img src="/images/login.png" width="500" height="500" id="loginCircle" alt="">
+
+
+            {{!-- </div> --}}
+        </div>
+    </div>
+    
+
+</div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>`
