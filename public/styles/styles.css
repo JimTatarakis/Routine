@@ -1,3 +1,131 @@
+*{
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.home, #login, #manager, #user{
+  max-width: 1280px;
+  width: 100%;
+}
+
+.logo{
+  margin-left: 30px;
+}
+
+body{
+  height: 100%;
+}
+
+.navbar{
+  position: fixed;
+}
+
+.headerText{
+  margin-top: 25%;
+}
+
+.container{
+  padding-left: 30px !important;
+}
+
+#dailyText{
+  font-size: 24px;
+  font-weight: 300;
+  color: #ee826c;
+}
+
+.blob{
+  margin-top: 10%;
+  z-index: -1;
+  position: relative;
+}
+
+.navbar-nav{
+  margin-left: 60%;
+  color: #ee826c;
+  text-decoration: none;
+}
+
+li{
+  padding: 0 15px;
+}
+
+a{
+  color: #ee826c !important; 
+}
+
+a:hover{
+  border: 1px solid #4aaaa5;
+}
+
+#mac{
+z-index: 99;
+top: 20%;
+margin-left: 10%;
+position: absolute;
+
+}
+
+#simpleText{
+  font-size: 45px;
+  color: #ee826c;
+  font-weight: 400;
+
+}
+
+.loginCont{
+   margin-top: 10%;
+   text-align: center;
+}
+
+#loginCircle{
+ z-index: -1; 
+ display: block;
+ margin-left: auto;
+ margin-right: auto;
+ width: 50%;
+ position: relative;
+}
+
+
+#loginForm{
+z-index: 99;
+position: absolute;
+width: 95%;
+margin-top: 200px;
+}
+
 .list-group-item {
   line-height: 2.5;
+}
+
+.taskRow{
+  margin-top: 100px;
+}
+
+.addTaskRow, .userHi{
+margin-top: 100px;
+text-align: center;
+}
+
+#addTask{
+  margin-top: 100px;
+}
+
+footer{
+  padding-top:30px;
+  height: 80px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.fab{
+  font-family: 'Quicksand', sans-serif !important;
+  color:  #ee826c;
+}
+
+.error{
+  margin-top: 100px;
+  text-align: center;
 }
