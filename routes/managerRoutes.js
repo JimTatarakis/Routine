@@ -9,17 +9,15 @@ var db = require("../models");
 module.exports = function (app) {
   // GET route : tasks
   app.get("/api/tasks", function (req, res) {
-    db.Task.findAll({}).then(function (res) {
-      res.json(res);
+    db.Task.findAll({}).then(function (answer) {
+      res.json(answer);
     });
   });
 
   // GET route : tasks not completed
   app.get("/api/tasks/notcompleted", function (req, res) {
-    db.Task.findAll({ where: { completed: false } }).then(function (res) {
-      res.json(res);
-    }).catch(function (err) {
-      res.json(err);
+    db.Task.findAll({ where: { completed: false } }).then(function (answer) {
+      res.json(answer);
     });
   });
 
@@ -28,12 +26,30 @@ module.exports = function (app) {
     db.Task.create({
       name: req.body.name,
       completed: false
-    }).then(function (res) {
-      res.json(res)
-    }).catch(function (err) {
-      res.json(err);
+    }).then(function (answer) {
+      res.json(answer);
+    });
+  });
+
+  // POST route : add task
+  app.post("/api/register", function (req, res) {
+    db.User.create({
+      username: req.body.username,
+      password: req.body.password,
+      displayName: req.body.displayName,
+      email: req.body.email,
+      createdAt: Date.now(),
+      updatedAt: Date.now()
     })
-  })
+      .then(function (answer) {
+        res.json(answer);
+      })
+      .catch(function(err) {
+        console.log(err);
+        // window.alert(err);
+        // location.reload();
+      });
+  });
 
   // DELETE route
   app.delete("/api/tasks/completed", function (req, res) {
@@ -41,7 +57,7 @@ module.exports = function (app) {
       where: {
         completed: true
       }
-    }).then(function (res) {
+    }).then(function (data) {
       res.json({ delete: true });
     }).catch(function(err) {
       res.json(err);;
@@ -58,7 +74,7 @@ module.exports = function (app) {
           id: req.body.id
         }
       }
-    ).then(function (res) {
+    ).then(function (data) {
       console.log("this is working!");
       res.json({ update: true });
     }).catch(function(err) {

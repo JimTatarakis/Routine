@@ -17,21 +17,27 @@
                 </nav>
 
                 <!-- <h1>{{msg}}</h1> -->
-                <form action="/login" method="post" id="loginForm">
-                    <div>
-                        <label>Username:</label>
-                        <input type="text" name="username" />
-                    </div>
-                    <div>
-                        <label>Password:</label>
-                        <input type="password" name="password" />
-                    </div>
-                    <div>
-                        <input class="btn btn-rounded waves-effect btn-default" style="color:white !important;"
-                            type="submit" value="Log In" />
-                        </a>
-                    </div>
-                </form>
+                <form action="/api/register" method="post">
+        <div>
+            <label>Username:</label>
+            <input type="text" name="username" />
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="password" name="password" />
+        </div>
+        <div>
+            <label>Display Name:</label>
+            <input type="text" name="displayName" />
+        </div>
+        <div>
+            <label>Email:</label>
+            <input type="email" name="email" />
+        </div>
+        <div>
+            <input type="submit" value="Create User" />
+        </div>
+    </form>
                 <img src="/images/login.png" width="500" height="500" id="loginCircle" alt="">
 
 
