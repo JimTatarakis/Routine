@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     email: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       validate: {

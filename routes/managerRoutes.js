@@ -6,44 +6,49 @@ var db = require("../models");
 
 // Task Routes
 // =============================================================
-module.exports = function(app) {
+module.exports = function (app) {
   // GET route : tasks
-  app.get("/api/tasks", function(req, res) {
-    db.Task.findAll({}).then(function(res) {
+  app.get("/api/tasks", function (req, res) {
+    db.Task.findAll({}).then(function (res) {
       res.json(res);
     });
   });
 
   // GET route : tasks not completed
-  app.get("/api/tasks/notcompleted", function(req, res) {
-    db.Task.findAll({ where: { completed: false } }).then(function(res) {
+  app.get("/api/tasks/notcompleted", function (req, res) {
+    db.Task.findAll({ where: { completed: false } }).then(function (res) {
       res.json(res);
+    }).catch(function (err) {
+      res.json(err);
     });
   });
 
   // POST route : add task
-  app.post("/api/tasks", function(req, res) {
+  app.post("/api/tasks", function (req, res) {
     db.Task.create({
       name: req.body.name,
       completed: false
-    }).then(function(res) {
-      res.json(res);
-    });
-  });
+    }).then(function (res) {
+      res.json(res)
+    }).catch(function (err) {
+      res.json(err);
+    })
+  })
 
   // DELETE route
-  app.delete("/api/tasks/completed", function(req, res) {
+  app.delete("/api/tasks/completed", function (req, res) {
     db.Task.destroy({
       where: {
         completed: true
       }
-    }).then(function(res) {
+    }).then(function (res) {
       res.json({ delete: true });
-    });
+    }).catch(function(err) {
+      res.json(err);;
   });
-
+});
   // PUT route
-  app.put("/api/tasks", function(req, res) {
+  app.put("/api/tasks", function (req, res) {
     db.Task.update(
       {
         completed: req.body.completed
@@ -53,10 +58,12 @@ module.exports = function(app) {
           id: req.body.id
         }
       }
-    ).then(function(res) {
+    ).then(function (res) {
       console.log("this is working!");
       res.json({ update: true });
-    });
+    }).catch(function(err) {
+      res.json(err);;
+  });
   });
 };
 
