@@ -4,7 +4,7 @@
 // =============================================================
 var db = require("../models");
 
-// Routes
+// Task Routes
 // =============================================================
 module.exports = function(app) {
   // GET route : tasks
@@ -59,3 +59,6 @@ module.exports = function(app) {
     });
   });
 };
+
+// Manager View Routes
+// =============================================================
