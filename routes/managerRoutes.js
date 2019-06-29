@@ -52,7 +52,7 @@ module.exports = function (app) {
   });
 
   // DELETE route
-  app.delete("/api/tasks/completed", function (req, res) {
+  app.delete("/api/tasks/completed/", function (req, res) {
     db.Task.destroy({
       where: {
         completed: true
@@ -63,44 +63,26 @@ module.exports = function (app) {
       res.json(err);;
     });
   });
-  // PUT route : mark task complete
-  app.put("/api/tasks", function (req, res) {
+  // PUT route
+  app.put("/api/tasks/:id", function (req, res) {
     db.Task.update(
       {
-        completed: req.body.completed
+        completed: true
       },
       {
         where: {
-          id: req.body.id
+          id: req.params.id
         }
       }
-    ).then(function (data) {
-      console.log("this is working!");
-      res.json({ update: true });
-    }).catch(function (err) {
-      res.json(err);;
-    });
+    )
+      .then(function (data) {
+        console.log("this is working!");
+        res.json(data);
+      }).catch(function (err) {
+        res.json(err);
+      });
   });
+}
 
-
-  // Assign User to Task from manager
-  app.put("/api/tasks", function (req, res) {
-    db.Task.update(
-      {
-        // this references the selected person
-        UserId: req.body.UserId
-      },
-      {
-        // this references the selected task
-        where: {
-          id: req.body.id
-        }
-      }
-    ).then(function (data) {
-      console.log("this is working!");
-      res.json({ taskAssigned: true });
-    }).catch(function (err) {
-      res.json(err);;
-    });
-  });
-};
+// Manager View Routes
+// =============================================================

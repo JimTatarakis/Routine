@@ -1,85 +1,103 @@
 <div id="user">
-<div class="container">
-{{!-- <div class="form-group"> --}}
-  <nav class="navbar navbar-expand bg-white fixed-top ">
+  <div class="container">
+    {{!-- <div class="form-group"> --}}
+    <nav class="navbar navbar-expand bg-white fixed-top ">
       <a class="navbar-brand" href="/">
-          <img src="/images/logo.png" width="100" height="35" class="d-inline-block align-top logo"
-              alt="">
+        <img src="/images/logo.png" width="100" height="35" class="d-inline-block align-top logo" alt="">
       </a>
       <ul class="navbar-nav">
-          <li><a href="#">FEATURES</a></li>
-          <li><a href="#footer">CONTACT</a></li>
-          <li><a href="login">LOGIN</a></li>
+        <li><a href="#">FEATURES</a></li>
+        <li><a href="#footer">CONTACT</a></li>
+        <li><a href="register">REGISTER</a></li>
+        <li><a href="login">LOGIN</a></li>
       </ul>
-  </nav>
-  <div class="container">
+    </nav>
+    <div class="container">
       <div class="row userHi">
-     <div class="col-8 offset-2"style="text-align:center;">
-        <h1>{{msg}}</h1>
-        <br>
-         <h4>View daily tasks below:</h4>
-        <hr>
-        <br>
-        <a href="#viewAll"><button  class="btn btn-default">VIEW ALL</button></a>
-      </div>
-      <div class="container">
+        <div class="col-8 offset-2" style="text-align:center;">
+          <h1>Welcome!</h1>
+          <br>
+          <h4>View daily tasks below:</h4>
+          <hr>
+          <br>
+
+        </div>
+     <div class="container">
         <div class="row taskRow" id="taskIcon">
-          <div class="col-5 offset-1">
+          <div class="col-4">
             <div class="card" style="width: 18rem;">
               <img src="images/daily.png" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Daily Tasks</h5>
-                <p class="card-text">List of of tasks that must be completed by the end of day.</p>
+                <p class="card-text">List of tasks that must be completed by the end of day.</p>
               </div>
-              <ul id="example-list" class="list-group list-group-flush list-group">
-                {{#each examples}}
+              <ul id="task-list" class="list-group list-group-flush list-group">
+           {{#each Tasks}}
+  
                 <li class="list-group-item" data-id="{{this.id}}">
-                  <a href="example/{{this.id}}">{{this.text}}</a>
-                  <button class="btn btn-danger float-right delete">ｘ</button>
+                  <a href="task/{{this.id}}">{{this.name}}</a>
+                
                 </li>
+
                 {{/each}}
               </ul>
             </div>
 
           </div>
-          <div class="col-5 offset-1">
+          <div class="col-4">
             <div class="card" style="width: 18rem;">
               <img src="images/pending.png" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Pending Tasks</h5>
                 <p class="card-text">Tasks that still need to be completed by end of day.</p>
               </div>
-              <ul id="example-list" class="list-group list-group-flush list-group">
-                {{#each examples}}
+              <ul id="pendingTask-list" class="list-group list-group-flush list-group">
+                {{#each Tasks}}
+               {{#unless completed}}
                 <li class="list-group-item" data-id="{{this.id}}">
-                  <a href="example/{{this.id}}">{{this.text}}</a>
-                  <button class="btn btn-danger float-right delete">ｘ</button>
+                  <a href="task/{{this.id}}">{{this.name}}</a>
+                  <button class="btn btn-default btn-sm float-right move pendingBtn">✔</button>
                 </li>
+                          {{/unless}}
                 {{/each}}
               </ul>
             </div>
           </div>
-          {{!-- <div class="col-4 ">
+          <div class="col-4 ">
             <div class="card" style="width: 18rem;">
               <img src="images/completed.png" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Completed Tasks Tasks</h5>
                 <p class="card-text">Tasks that been marked as completed</p>
               </div>
-              <ul id="example-list" class="list-group list-group-flush list-group">
-                {{#each examples}}
-                <li class="list-group-item" data-id="{{this.id}}">
-                  <a href="example/{{this.id}}">{{this.text}}</a>
-                  <button class="btn btn-danger float-right delete">ｘ</button>
+              <ul id="completedTask-list" class="list-group list-group-flush list-group">
+               {{#each Tasks}}
+                  {{#if completed}}
+                <li class="list-group-item completed" data-id="{{this.id}}">
+                  <a href="task/{{this.id}}">{{this.name}}</a>
+                  <button class="btn btn-danger btn-sm float-right delete">✔</button>
                 </li>
+                 {{/if}}
                 {{/each}}
               </ul>
             </div>
-          </div> --}}
+          </div>
         </div>
 
       </div>
-
-</div>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>`
+       
+        {{!-- <div class="container viewAllSection">
+          <div class="row">
+            <div class="col">
+               <div class="card">
+              <div class="card-body">
+            
+              <a href="#viewAll"><button style="text-align:center" class="btn btn-default viewAll">VIEW ALL</button></a>
+            </div>
+          </div>
+           </div>
+          </div>
+        </div> --}}
+      </div>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="/js/index.js"></script>`

@@ -1,99 +1,135 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+$(document).ready(function () {
 
-// The API object contains methods for each kind of request we'll make
-var API = {
-  saveExample: function(example) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  deleteExample: function(id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
-    });
-  }
-};
+  // Get references to page elements
+  var $employeeName = $("#name-text");
+  var $exampleDescription = $("#example-description");
+  var $submitBtn = $("#submit");
+  var $newTaskList = $("#task-list");
+  var $pendingList = $("#pendingTask-list");
+  var $completedList = $("#completedTask-list");
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
+  // The API object contains methods for each kind of request we'll make
+  var API = {
+   
+    getTask: function () {
+      return $.ajax({
+        url: "api/tasks",
+        type: "GET"
+      });
+    },
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
-
-      $li.append($button);
-
-      return $li;
-    });
-
-    $exampleList.empty();
-    $exampleList.append($examples);
-  });
-};
-
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
-  event.preventDefault();
-
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+    deleteTask: function (id) {
+      return $.ajax({
+        url: "api/tasks/completed" + id,
+        type: "DELETE"
+      });
+    },
+    updateTask: function (id) {
+      console.log("updating")
+      // let id = data.id
+      return $.ajax({
+        url: "api/tasks/" + id,
+        type: "PUT"
+       
+      });
+    }
   };
 
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
-    return;
+ 
+
+  // refreshExamples gets new examples from the db and repopulates the list
+  var completedTasks = function () {
+    API.getTask().then(function (data) {
+      if (data.completed === true) {
+        var $tasks = data.map(function (task) {
+          // console.log(this)
+          var $a = $("<a>")
+            .text(task.name)
+            .attr("href", "/tasks/" + task.id);
+
+          var $li = $("<li>")
+            .attr({
+              class: "list-group-item",
+              "data-id": task.id
+            })
+            .append($a);
+
+          var $button = $("<button>")
+            .addClass("btn btn-danger btn-sm float-right delete")
+            .text("✔");
+
+
+          $li.append($button);
+
+          return $li;
+        });
+
+
+        $completedList.empty();
+        $completedList.append($tasks);
+      } else {
+        console.log("no incomplete tasks")
+      }
+    });
+  };
+  completedTasks()
+
+  // handleFormSubmit is called whenever we submit a new example
+  // Save the new example to the db and refresh the list
+  var handleFormSubmit = function (event) {
+    console.log(this)
+    event.preventDefault();
+
+    var task = {
+      name: $employeeName.val().trim(),
+      completed: $exampleDescription.val().trim()
+    };
+
+    if (!(task.name && task.completed)) {
+      alert("You must enter a name and description!");
+      return;
+    }
+
+    API.newTask(task).then(function () {
+      // pendingTasks();
+      location.reload();
+
+    })
+    $employeeName.val("");
+    $exampleDescription.val("");
+  };
+
+
+
+ 
+
+//----------------------------------------------404 ERROR WITH ROUTES- NOT ABLE TO UPDATE/DELETE--------------------------
+  var handleDeleteBtnClick = function () {
+    var idToDelete = $(this)
+      .parent()
+      .attr("data-id");
+    API.deleteTask(idToDelete).then(function () {
+      console.log("id to move" + idToMove)
+      location.reload();
+    });
+  };
+
+  var completeBtnClick = function () {
+    var idToMove = $(this)
+      .parent()
+      .attr("data-id");
+    API.updateTask(idToMove).then(function () {
+      console.log("id to move" + idToMove)
+      location.reload();
+
+    });
   }
 
-  API.saveExample(example).then(function() {
-    refreshExamples();
-  });
 
-  $exampleText.val("");
-  $exampleDescription.val("");
-};
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
+  $submitBtn.on("click", handleFormSubmit);
+  $pendingList.on("click", ".move", completeBtnClick); 
+  $completedList.on("click", ".delete", handleDeleteBtnClick);
+});
 
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
-  });
-};
-
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);

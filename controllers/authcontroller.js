@@ -1,4 +1,8 @@
+
+var db = require("../models");
 var exports = module.exports = {}
+
+
 
 exports.index = function (req, res) {
     res.render("index");
@@ -13,11 +17,15 @@ exports.register = function (req, res) {
 };
 
 exports.manager = function (req, res) {
-    res.render("manager");
+    db.Task.findAll().then(data => {
+        res.render('manager', {Tasks:data})
+      })
 };
 
 exports.user = function (req, res) {
-    res.render("user");
+    db.Task.findAll().then(data => {
+        res.render('user', {Tasks:data})
+      })
 };
 
 exports.logout = function (req, res) {
@@ -25,3 +33,6 @@ exports.logout = function (req, res) {
         res.redirect('/');
     });
 }
+
+
+ 

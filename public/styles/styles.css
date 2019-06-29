@@ -41,7 +41,7 @@ body{
 }
 
 .navbar-nav{
-  margin-left: 60%;
+  margin-left: 50%;
   color: #ee826c;
   text-decoration: none;
 }
@@ -87,17 +87,29 @@ position: absolute;
  position: relative;
 }
 
+ul{
+  text-align: left;
+}
+
 
 #loginForm{
 z-index: 99;
 position: absolute;
 width: 95%;
-margin-top: 200px;
+margin: 190px auto;
+text-align: center;
 }
 
-.list-group-item {
-  line-height: 2.5;
+#registerForm{
+  text-align: right;
+  position: absolute;
+  margin: 170px auto;
+  width: 58%;
 }
+
+/* .list-group-item {
+  line-height: 2.5;
+} */
 
 .taskRow{
   margin-top: 100px;
@@ -112,16 +124,21 @@ text-align: center;
   margin-top: 100px;
 }
 
+.viewAllSection{
+  margin-top: 50px;
+}
+
 footer{
-  padding-top:30px;
-  height: 80px;
+  padding-top:80px;
+  height: 50px;
   left: 0;
   bottom: 0;
   width: 100%;
+
 }
 
 .fab{
-  font-family: 'Quicksand', sans-serif !important;
+  /* font-family: 'Quicksand', sans-serif !important; */
   color:  #ee826c;
 }
 
