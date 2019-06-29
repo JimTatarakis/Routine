@@ -63,27 +63,15 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-app.post(
-  "/login",
-  passport.authenticate("local", { failureRedirect: "/login" }),
-  function(req, res) {
-    res.redirect("/");
-  }
+app.post("/login", passport.authenticate("local", { failureRedirect: "/login" }),
+function(req, res) {
+  res.redirect("/user");
+}
 );
 
 // Routes
 require("./routes/managerRoutes")(app);
 require("./routes/htmlRoutes")(app);
-
-// Login authentication
-// app.post(
-//   "/login",
-//   passport.authenticate("local", {
-//     successRedirect: "/",
-//     failureRedirect: "/login",
-//     failureFlash: true
-//   })
-// );
 
 var syncOptions = { force: false };
 
