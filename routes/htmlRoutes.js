@@ -15,7 +15,7 @@ module.exports = function (app) {
   });
 
   app.get("/manager", function(req, res) {
-    res.render("manager");
+    res.render("manager")
   });
 
   app.get("/register", function(req, res) {

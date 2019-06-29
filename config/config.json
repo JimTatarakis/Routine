@@ -1,11 +1,7 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
-    "password": "yqz!05J1MD",
-=======
     "password": "Metropcs1",
->>>>>>> 04d52f943db4669fcdb712dd01d39039cb9bbde8
     "database": "routinedb",
     "host": "localhost",
     "dialect": "mysql"

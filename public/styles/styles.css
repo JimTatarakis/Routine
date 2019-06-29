@@ -41,7 +41,7 @@ body{
 }
 
 .navbar-nav{
-  margin-left: 60%;
+  margin-left: 50%;
   color: #ee826c;
   text-decoration: none;
 }
@@ -92,7 +92,15 @@ position: absolute;
 z-index: 99;
 position: absolute;
 width: 95%;
-margin-top: 200px;
+margin: 190px auto;
+text-align: center;
+}
+
+#registerForm{
+  text-align: right;
+  position: absolute;
+  margin: 170px auto;
+  width: 58%;
 }
 
 .list-group-item {
