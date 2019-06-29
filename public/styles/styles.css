@@ -124,16 +124,21 @@ text-align: center;
   margin-top: 100px;
 }
 
+.viewAllSection{
+  margin-top: 50px;
+}
+
 footer{
-  padding-top:30px;
-  height: 80px;
+  padding-top:80px;
+  height: 50px;
   left: 0;
   bottom: 0;
   width: 100%;
+
 }
 
 .fab{
-  font-family: 'Quicksand', sans-serif !important;
+  /* font-family: 'Quicksand', sans-serif !important; */
   color:  #ee826c;
 }
 

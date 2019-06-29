@@ -69,8 +69,8 @@ $(document).ready(function () {
           .append($a);
 
         var $button = $("<button>")
-          .addClass("btn btn-default btn-sm float-right move")
-          .text("ｘ");
+          .addClass("btn btn-default btn-sm float-right move pendingBtn")
+          .text("✔");
 
 
         $li.append($button);
@@ -130,8 +130,8 @@ $(document).ready(function () {
             .append($a);
 
           var $button = $("<button>")
-            .addClass("btn btn-default btn-sm float-right delete")
-            .text("ｘ");
+            .addClass("btn btn-danger btn-sm float-right delete")
+            .text("✔");
 
 
           $li.append($button);
@@ -172,6 +172,15 @@ $(document).ready(function () {
     $exampleDescription.val("");
   };
 
+
+  //----------------------------------------------ADD VIEW ALL SECTION---------------------------------------
+  $(".viewAll").on("click", function(){
+ console.log("this works")
+
+
+  });
+ 
+
 //----------------------------------------------404 ERROR WITH ROUTES- NOT ABLE TO UPDATE/DELETE--------------------------
   var handleDeleteBtnClick = function () {
     var idToDelete = $(this)
@@ -190,7 +199,6 @@ $(document).ready(function () {
       pendingTasks();
     });
   }
-
 
 
   // Add event listeners to the submit and delete buttons

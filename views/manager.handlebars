@@ -32,9 +32,7 @@
                 <p class="card-text">List of tasks that must be completed by the end of day.</p>
               </div>
               <ul id="task-list" class="list-group list-group-flush list-group">
-             
-               
-              
+
               </ul>
             </div>
 
@@ -48,12 +46,12 @@
               </div>
               <ul id="pendingTask-list" class="list-group list-group-flush list-group">
                 {{#each Tasks}}
-            
+                {{#if completed}}
                 <li class="list-group-item" data-id="{{this.id}}">
-                  <a href="task/{{this.id}}">{{this.text}}</a>
-                  <button class="btn btn-danger float-right move">ｘ</button>
+                  <a href="task/{{this.id}}">{{this.name}}</a>
+                  <button class="btn btn-danger float-right move pendingBtn">✔</button>
                 </li>
-                
+                {{/if}}
                 {{/each}}
               </ul>
             </div>
@@ -66,13 +64,13 @@
                 <p class="card-text">Tasks that been marked as completed</p>
               </div>
               <ul id="completedTask-list" class="list-group list-group-flush list-group">
-               {{#each Tasks}}
-                  {{#if completed}}
+                {{#each Tasks}}
+
                 <li class="list-group-item completed" data-id="{{this.id}}">
                   <a href="task/{{this.id}}">{{this.text}}</a>
-                  <button class="btn btn-danger float-right delete">ｘ</button>
+                  <button class="btn btn-danger float-right delete">✔</button>
                 </li>
-                 {{/if}}
+
                 {{/each}}
               </ul>
             </div>
@@ -104,8 +102,7 @@
 
               </div>
             </div>
-             </div>
-            </div>
-            <script type="text/javascript"
-              src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <script src="/js/index.js"></script>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/js/index.js"></script>
