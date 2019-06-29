@@ -7,6 +7,13 @@ module.exports = function(sequelize, DataTypes) {
         len: [1, 140]
       }
     },
+    description: {
+      type: DataTypes.TEXT,
+      notNull: true,
+      validate: {
+        len: [1, 140]
+      }
+    },
     completed: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
