@@ -13,7 +13,7 @@
     </nav>
     <div class="row addTaskRow">
       <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
+        <h1>Hello, Manager!</h1>
         <br>
         <h4>Would you like to assign a new task?</h4>
         <hr>
@@ -32,12 +32,9 @@
                 <p class="card-text">List of tasks that must be completed by the end of day.</p>
               </div>
               <ul id="task-list" class="list-group list-group-flush list-group">
-                {{#each Tasks}}
-                <li class="list-group-item" data-id="{{this.id}}">
-                  <a href="example/{{this.id}}">{{this.text}}</a>
-                  <button class="btn btn-danger float-right delete">ｘ</button>
-                </li>
-                {{/each}}
+             
+               
+              
               </ul>
             </div>
 
@@ -53,7 +50,7 @@
                 {{#each Tasks}}
             
                 <li class="list-group-item" data-id="{{this.id}}">
-                  <a href="example/{{this.id}}">{{this.text}}</a>
+                  <a href="task/{{this.id}}">{{this.text}}</a>
                   <button class="btn btn-danger float-right delete">ｘ</button>
                 </li>
                 
@@ -71,8 +68,8 @@
               <ul id="completedTask-list" class="list-group list-group-flush list-group">
                {{#each Tasks}}
                   {{#if completed}}
-                <li class="list-group-item" data-id="{{this.id}}">
-                  <a href="example/{{this.id}}">{{this.text}}</a>
+                <li class="list-group-item completed" data-id="{{this.id}}">
+                  <a href="task/{{this.id}}">{{this.text}}</a>
                   <button class="btn btn-danger float-right delete">ｘ</button>
                 </li>
                  {{/if}}

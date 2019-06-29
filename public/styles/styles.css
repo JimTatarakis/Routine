@@ -87,6 +87,9 @@ position: absolute;
  position: relative;
 }
 
+ul{
+  text-align: left;
+}
 
 #loginForm{
 z-index: 99;

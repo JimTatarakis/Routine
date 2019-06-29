@@ -52,7 +52,7 @@ module.exports = function (app) {
   });
 
   // DELETE route
-  app.delete("/api/tasks/completed", function (req, res) {
+  app.delete("/api/tasks/completed/", function (req, res) {
     db.Task.destroy({
       where: {
         completed: true

@@ -4,7 +4,7 @@ $(document).ready(function () {
   var $employeeName = $("#name-text");
   var $exampleDescription = $("#example-description");
   var $submitBtn = $("#submit");
-  var $taskList = $("#task-list");
+  var $newTaskList = $("#task-list");
   var $pendingList = $("#pendingTask-list");
   var $completedList = $("#completedTask-list");
 
@@ -33,6 +33,12 @@ $(document).ready(function () {
         type: "GET"
       });
     },
+    getCompleted: function () {
+      return $.ajax({
+        url: "api/tasks/completed",
+        type: "GET"
+      });
+    },
     deleteTask: function (id) {
       return $.ajax({
         url: "api/tasks/completed" + id,
@@ -47,7 +53,7 @@ $(document).ready(function () {
       var $tasks = data.map(function (task) {
         var $a = $("<a>")
           .text(task.name)
-          .attr("href", "/example/" + task.id);
+          .attr("href", "/tasks/" + task.id);
 
         var $li = $("<li>")
           .attr({
@@ -57,19 +63,49 @@ $(document).ready(function () {
           .append($a);
 
         var $button = $("<button>")
-          .addClass("btn btn-danger float-right delete")
+          .addClass("btn btn-default btn-sm float-right delete")
           .text("ｘ");
+  
 
         $li.append($button);
 
         return $li;
       });
 
-      $taskList.empty();
-      $taskList.append($tasks);
+
+      $pendingList.empty();
+      $pendingList.append($tasks);
     });
   };
 
+
+  refreshTasks();
+
+  var dailyTasks = function () {
+    API.getTask().then(function (data) {
+      var $tasks = data.map(function (task) {
+        var $p = $("<p>")
+          .text(task.name)
+          .attr("href", "/tasks/" + task.id);
+
+        var $li = $("<li>")
+          .attr({
+            class: "list-group-item",
+            "data-id": task.id
+          })
+          .append($p);
+
+
+        return $li;
+      });
+
+
+      $newTaskList.empty();
+      $newTaskList.append($tasks);
+    });
+  };
+
+  dailyTasks();
 
   // handleFormSubmit is called whenever we submit a new example
   // Save the new example to the db and refresh the list
@@ -100,16 +136,27 @@ $(document).ready(function () {
     var idToDelete = $(this)
       .parent()
       .attr("data-id");
-
     API.deleteTask(idToDelete).then(function () {
       refreshTasks();
     });
   };
 
+  var completeBtnClick = function () {
+    var idToMove = $(this)
+      .parent()
+      .attr("data-id");
+    $completedaskList.append(idToMove);
+
+  };
+
   // Add event listeners to the submit and delete buttons
   $submitBtn.on("click", handleFormSubmit);
-  $taskList.on("click", ".delete", handleDeleteBtnClick);
+  // $newTaskList.on("click", ".move", completeBtnClick);
+  // $newTaskList.on("click", ".delete", handleDeleteBtnClick);
   $pendingList.on("click", ".delete", handleDeleteBtnClick);
   $completedList.on("click", ".delete", handleDeleteBtnClick);
 
 });
+
+
+//404 when deleting
