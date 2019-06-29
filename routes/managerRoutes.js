@@ -31,7 +31,7 @@ module.exports = function (app) {
     });
   });
 
-  // POST route : add task
+  // POST route : add User
   app.post("/api/register", function (req, res) {
     db.User.create({
       username: req.body.username,
