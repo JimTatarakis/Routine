@@ -11,34 +11,14 @@ $(document).ready(function () {
 
   // The API object contains methods for each kind of request we'll make
   var API = {
-    newTask: function (newTask) {
-      return $.ajax({
-        headers: {
-          "Content-Type": "application/json"
-        },
-        type: "POST",
-        url: "api/tasks",
-        data: JSON.stringify(newTask)
-      });
-    },
+   
     getTask: function () {
       return $.ajax({
         url: "api/tasks",
         type: "GET"
       });
     },
-    getPendingTask: function () {
-      return $.ajax({
-        url: "api/tasks/notcompleted",
-        type: "GET"
-      });
-    },
-    getCompleted: function () {
-      return $.ajax({
-        url: "api/tasks/completed",
-        type: "GET"
-      });
-    },
+
     deleteTask: function (id) {
       return $.ajax({
         url: "api/tasks/completed" + id,
@@ -46,78 +26,24 @@ $(document).ready(function () {
       });
     },
     updateTask: function (id) {
+      console.log("updating")
+      // let id = data.id
       return $.ajax({
-        url: "api/tasks" + id,
+        url: "api/tasks/" + id,
         type: "PUT"
+       
       });
     }
   };
 
-  // refreshExamples gets new examples from the db and repopulates the list
-  var pendingTasks = function () {
-    API.getTask().then(function (data) {
-      var $tasks = data.map(function (task) {
-        var $a = $("<a>")
-          .text(task.name)
-          .attr("href", "/tasks/" + task.id);
-
-        var $li = $("<li>")
-          .attr({
-            class: "list-group-item",
-            "data-id": task.id
-          })
-          .append($a);
-
-        var $button = $("<button>")
-          .addClass("btn btn-default btn-sm float-right move pendingBtn")
-          .text("✔");
-
-
-        $li.append($button);
-
-        return $li;
-      });
-
-
-      $pendingList.empty();
-      $pendingList.append($tasks);
-    });
-  };
-
-
-  pendingTasks();
-
-  var dailyTasks = function () {
-    API.getTask().then(function (data) {
-      var $tasks = data.map(function (task) {
-        var $p = $("<p>")
-          .text(task.name)
-          .attr("href", "/tasks/" + task.id);
-
-        var $li = $("<li>")
-          .attr({
-            class: "list-group-item",
-            "data-id": task.id
-          })
-          .append($p);
-
-
-        return $li;
-      });
-
-
-      $newTaskList.empty();
-      $newTaskList.append($tasks);
-    });
-  };
-
-  dailyTasks();
+ 
 
   // refreshExamples gets new examples from the db and repopulates the list
   var completedTasks = function () {
     API.getTask().then(function (data) {
       if (data.completed === true) {
         var $tasks = data.map(function (task) {
+          // console.log(this)
           var $a = $("<a>")
             .text(task.name)
             .attr("href", "/tasks/" + task.id);
@@ -152,6 +78,7 @@ $(document).ready(function () {
   // handleFormSubmit is called whenever we submit a new example
   // Save the new example to the db and refresh the list
   var handleFormSubmit = function (event) {
+    console.log(this)
     event.preventDefault();
 
     var task = {
@@ -165,20 +92,16 @@ $(document).ready(function () {
     }
 
     API.newTask(task).then(function () {
-      pendingTasks();
-    });
+      // pendingTasks();
+      location.reload();
 
+    })
     $employeeName.val("");
     $exampleDescription.val("");
   };
 
 
-  //----------------------------------------------ADD VIEW ALL SECTION---------------------------------------
-  $(".viewAll").on("click", function(){
- console.log("this works")
 
-
-  });
  
 
 //----------------------------------------------404 ERROR WITH ROUTES- NOT ABLE TO UPDATE/DELETE--------------------------
@@ -187,7 +110,8 @@ $(document).ready(function () {
       .parent()
       .attr("data-id");
     API.deleteTask(idToDelete).then(function () {
-      pendingTasks();
+      console.log("id to move" + idToMove)
+      location.reload();
     });
   };
 
@@ -196,16 +120,16 @@ $(document).ready(function () {
       .parent()
       .attr("data-id");
     API.updateTask(idToMove).then(function () {
-      pendingTasks();
+      console.log("id to move" + idToMove)
+      location.reload();
+
     });
   }
 
 
-  // Add event listeners to the submit and delete buttons
+
   $submitBtn.on("click", handleFormSubmit);
-  $pendingList.on("click", ".move", completeBtnClick);
-  // $newTaskList.on("click", ".delete", handleDeleteBtnClick);
-  // $pendingList.on("click", ".delete", handleDeleteBtnClick);
+  $pendingList.on("click", ".move", completeBtnClick); 
   $completedList.on("click", ".delete", handleDeleteBtnClick);
 });
 

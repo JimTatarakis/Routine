@@ -11,12 +11,18 @@ module.exports = function (app) {
   });
 
   app.get("/user", function(req, res) {
-    res.render("user");
-  });
+    db.Task.findAll().then(data => {
+      res.render('user', {Tasks:data})
+    })
+  })
+ 
 
   app.get("/manager", function(req, res) {
-    res.render("manager")
-  });
+    db.Task.findAll().then(data => {
+      res.render('manager', {Tasks:data})
+    })
+  })
+   
 
   app.get("/register", function(req, res) {
     res.render("register");

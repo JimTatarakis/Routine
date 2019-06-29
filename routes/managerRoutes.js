@@ -44,7 +44,7 @@ module.exports = function (app) {
       .then(function (answer) {
         res.json(answer);
       })
-      .catch(function(err) {
+      .catch(function (err) {
         console.log(err);
         // window.alert(err);
         // location.reload();
@@ -59,29 +59,30 @@ module.exports = function (app) {
       }
     }).then(function (data) {
       res.json({ delete: true });
-    }).catch(function(err) {
+    }).catch(function (err) {
       res.json(err);;
+    });
   });
-});
   // PUT route
-  app.put("/api/tasks", function (req, res) {
+  app.put("/api/tasks/:id", function (req, res) {
     db.Task.update(
       {
-        completed: req.body.completed
+        completed: true
       },
       {
         where: {
-          id: req.body.id
+          id: req.params.id
         }
       }
-    ).then(function (data) {
-      console.log("this is working!");
-      res.json({ update: true });
-    }).catch(function(err) {
-      res.json(err);;
+    )
+      .then(function (data) {
+        console.log("this is working!");
+        res.json(data);
+      }).catch(function (err) {
+        res.json(err);
+      });
   });
-  });
-};
+}
 
 // Manager View Routes
 // =============================================================
