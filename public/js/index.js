@@ -44,11 +44,17 @@ $(document).ready(function () {
         url: "api/tasks/completed" + id,
         type: "DELETE"
       });
+    },
+    updateTask: function (id) {
+      return $.ajax({
+        url: "api/tasks" + id,
+        type: "PUT"
+      });
     }
   };
 
   // refreshExamples gets new examples from the db and repopulates the list
-  var refreshTasks = function () {
+  var pendingTasks = function () {
     API.getTask().then(function (data) {
       var $tasks = data.map(function (task) {
         var $a = $("<a>")
@@ -63,9 +69,9 @@ $(document).ready(function () {
           .append($a);
 
         var $button = $("<button>")
-          .addClass("btn btn-default btn-sm float-right delete")
+          .addClass("btn btn-default btn-sm float-right move")
           .text("ｘ");
-  
+
 
         $li.append($button);
 
@@ -79,7 +85,7 @@ $(document).ready(function () {
   };
 
 
-  refreshTasks();
+  pendingTasks();
 
   var dailyTasks = function () {
     API.getTask().then(function (data) {
@@ -107,6 +113,42 @@ $(document).ready(function () {
 
   dailyTasks();
 
+  // refreshExamples gets new examples from the db and repopulates the list
+  var completedTasks = function () {
+    API.getTask().then(function (data) {
+      if (data.completed === true) {
+        var $tasks = data.map(function (task) {
+          var $a = $("<a>")
+            .text(task.name)
+            .attr("href", "/tasks/" + task.id);
+
+          var $li = $("<li>")
+            .attr({
+              class: "list-group-item",
+              "data-id": task.id
+            })
+            .append($a);
+
+          var $button = $("<button>")
+            .addClass("btn btn-default btn-sm float-right delete")
+            .text("ｘ");
+
+
+          $li.append($button);
+
+          return $li;
+        });
+
+
+        $completedList.empty();
+        $completedList.append($tasks);
+      } else {
+        console.log("no incomplete tasks")
+      }
+    });
+  };
+  completedTasks()
+
   // handleFormSubmit is called whenever we submit a new example
   // Save the new example to the db and refresh the list
   var handleFormSubmit = function (event) {
@@ -123,21 +165,20 @@ $(document).ready(function () {
     }
 
     API.newTask(task).then(function () {
-      refreshTasks();
+      pendingTasks();
     });
 
     $employeeName.val("");
     $exampleDescription.val("");
   };
 
-  // handleDeleteBtnClick is called when an example's delete button is clicked
-  // Remove the example from the db and refresh the list
+//----------------------------------------------404 ERROR WITH ROUTES- NOT ABLE TO UPDATE/DELETE--------------------------
   var handleDeleteBtnClick = function () {
     var idToDelete = $(this)
       .parent()
       .attr("data-id");
     API.deleteTask(idToDelete).then(function () {
-      refreshTasks();
+      pendingTasks();
     });
   };
 
@@ -145,18 +186,18 @@ $(document).ready(function () {
     var idToMove = $(this)
       .parent()
       .attr("data-id");
-    $completedaskList.append(idToMove);
+    API.updateTask(idToMove).then(function () {
+      pendingTasks();
+    });
+  }
 
-  };
+
 
   // Add event listeners to the submit and delete buttons
   $submitBtn.on("click", handleFormSubmit);
-  // $newTaskList.on("click", ".move", completeBtnClick);
+  $pendingList.on("click", ".move", completeBtnClick);
   // $newTaskList.on("click", ".delete", handleDeleteBtnClick);
-  $pendingList.on("click", ".delete", handleDeleteBtnClick);
+  // $pendingList.on("click", ".delete", handleDeleteBtnClick);
   $completedList.on("click", ".delete", handleDeleteBtnClick);
-
 });
 
-
-//404 when deleting

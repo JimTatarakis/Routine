@@ -91,6 +91,7 @@ ul{
   text-align: left;
 }
 
+
 #loginForm{
 z-index: 99;
 position: absolute;
@@ -106,9 +107,9 @@ text-align: center;
   width: 58%;
 }
 
-.list-group-item {
+/* .list-group-item {
   line-height: 2.5;
-}
+} */
 
 .taskRow{
   margin-top: 100px;
