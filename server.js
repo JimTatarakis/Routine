@@ -70,7 +70,8 @@ function(req, res) {
 );
 
 // Routes
-require("./routes/managerRoutes")(app);
+require("./routes/taskRoutes")(app);
+require("./routes/userRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
 var syncOptions = { force: false };

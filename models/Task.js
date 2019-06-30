@@ -7,6 +7,10 @@ module.exports = function(sequelize, DataTypes) {
         len: [1, 140]
       }
     },
+    description: {
+      type: DataTypes.TEXT,
+      notNull: false
+    },
     completed: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
