@@ -7,11 +7,12 @@ module.exports = function (app, passport) {
 
   app.get("/login", authController.login);
 
+ 
   app.get("/user", isLoggedIn, authController.user);
 
   app.get("/manager", isLoggedIn, authController.manager);
 
-  app.get("/register", isLoggedIn, authController.register);
+  app.get("/register", authController.register);
 
   // Render 404 page for any unmatched routes
   app.get("*", function (req, res) {

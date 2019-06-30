@@ -7,18 +7,19 @@
       <ul class="navbar-nav">
         <li><a href="#">FEATURES</a></li>
         <li><a href="#footer">CONTACT</a></li>
+        <li><a href="register">REGISTER</a></li>
         <li><a href="login">LOGIN</a></li>
       </ul>
     </nav>
     <div class="row addTaskRow">
       <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
+        <h1>Hello, Manager!</h1>
         <br>
         <h4>Would you like to assign a new task?</h4>
         <hr>
         <br>
-        <a href="#addTask"><button  class="btn btn-default">YES</button></a>
-        <a href="#taskIcon"><button  class="btn btn-default">NO</button></a>
+        <a href="#addTask"><button class="btn btn-default">YES</button></a>
+        <a href="#taskIcon"><button class="btn btn-default">NO</button></a>
         <br><br><br><br>
       </div>
       <div class="container">
@@ -28,14 +29,16 @@
               <img src="images/daily.png" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Daily Tasks</h5>
-                <p class="card-text">List of of tasks that must be completed by the end of day.</p>
+                <p class="card-text">List of tasks that must be completed by the end of day.</p>
               </div>
-              <ul id="example-list" class="list-group list-group-flush list-group">
-                {{#each examples}}
+              <ul id="task-list" class="list-group list-group-flush list-group">
+           {{#each Tasks}}
+  
                 <li class="list-group-item" data-id="{{this.id}}">
-                  <a href="example/{{this.id}}">{{this.text}}</a>
-                  <button class="btn btn-danger float-right delete">ｘ</button>
+                  <a href="task/{{this.id}}">{{this.name}}</a>
+                
                 </li>
+
                 {{/each}}
               </ul>
             </div>
@@ -48,12 +51,14 @@
                 <h5 class="card-title">Pending Tasks</h5>
                 <p class="card-text">Tasks that still need to be completed by end of day.</p>
               </div>
-              <ul id="example-list" class="list-group list-group-flush list-group">
-                {{#each examples}}
+              <ul id="pendingTask-list" class="list-group list-group-flush list-group">
+                {{#each Tasks}}
+               {{#unless completed}}
                 <li class="list-group-item" data-id="{{this.id}}">
-                  <a href="example/{{this.id}}">{{this.text}}</a>
-                  <button class="btn btn-danger float-right delete">ｘ</button>
+                  <a href="task/{{this.id}}">{{this.name}}</a>
+                  <button class="btn btn-default btn-sm float-right move pendingBtn">✔</button>
                 </li>
+                          {{/unless}}
                 {{/each}}
               </ul>
             </div>
@@ -65,12 +70,14 @@
                 <h5 class="card-title">Completed Tasks Tasks</h5>
                 <p class="card-text">Tasks that been marked as completed</p>
               </div>
-              <ul id="example-list" class="list-group list-group-flush list-group">
-                {{#each examples}}
-                <li class="list-group-item" data-id="{{this.id}}">
-                  <a href="example/{{this.id}}">{{this.text}}</a>
-                  <button class="btn btn-danger float-right delete">ｘ</button>
+              <ul id="completedTask-list" class="list-group list-group-flush list-group">
+               {{#each Tasks}}
+                  {{#if completed}}
+                <li class="list-group-item completed" data-id="{{this.id}}">
+                  <a href="task/{{this.id}}">{{this.name}}</a>
+                  <button class="btn btn-danger btn-sm float-right delete">✔</button>
                 </li>
+                 {{/if}}
                 {{/each}}
               </ul>
             </div>
@@ -78,27 +85,32 @@
         </div>
 
       </div>
-  
-      <div class="container" >
-      <div class="row addTaskRow">
-        <div class="col-8 offset-2">
-             <h3 id="addTask">Add a new task below:</h3>
-             <hr>
-          <form class="clearfix mb-4" action="POST">
-            <div class="form-group">
-              <label for="example-text">Assgin Task To:</label>
-              <input type="text" id="example-text" class="form-control" aria-describedby="example-text"
-                placeholder="Employee Name">
-            </div>
-            <div class="form-group">
-              <label for="example-description">Description of Task:</label>
-              <textarea class="form-control" id="example-description" aria-describedby="example-description"
-                placeholder="Description"></textarea>
-            </div>
-            <button id="submit" class="btn btn-default float-right">Add Task</button>
-          </form>
 
-        </div>
-</div>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="/js/index.js"></script>
+      <div class="container">
+        <div class="row addTaskRow">
+          <div class="col-8 offset-2">
+            <div class="card">
+              <div class="card-body">
+                <h3 id="addTask">Add a new task below:</h3>
+                <hr>
+                <form class="clearfix mb-4" action="POST">
+                  <div class="form-group">
+                    <label for="name-text">Assgin Task To:</label>
+                    <input type="text" id="name-text" class="form-control" aria-describedby="name-text"
+                      placeholder="Employee Name">
+                  </div>
+                  <div class="form-group">
+                    <label for="example-description">Description of Task:</label>
+                    <textarea class="form-control" id="example-description" aria-describedby="example-description"
+                      placeholder="ex. Distribute company newsletter"></textarea>
+                  </div>
+                  <button id="submit" class="btn btn-default float-right">Add Task</button>
+                </form>
+
+              </div>
+            </div>
+             </div>
+            </div>
+            <script type="text/javascript"
+              src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="/js/index.js"></script>

@@ -9,7 +9,10 @@ module.exports = function(sequelize, DataTypes) {
     },
     description: {
       type: DataTypes.TEXT,
-      notNull: false
+      notNull: true,
+      validate: {
+        len: [1, 140]
+      }
     },
     completed: {
       type: DataTypes.BOOLEAN,
