@@ -7,8 +7,6 @@
       <ul class="navbar-nav">
         <li><a href="#">FEATURES</a></li>
         <li><a href="#footer">CONTACT</a></li>
-        <li><a href="register">REGISTER</a></li>
-        <li><a href="login">LOGIN</a></li>
       </ul>
     </nav>
     <div class="row addTaskRow">
@@ -32,11 +30,11 @@
                 <p class="card-text">List of tasks that must be completed by the end of day.</p>
               </div>
               <ul id="task-list" class="list-group list-group-flush list-group">
-           {{#each Tasks}}
-  
+                {{#each Tasks}}
+
                 <li class="list-group-item" data-id="{{this.id}}">
-                  <a href="task/{{this.id}}">{{this.name}}</a>
-                
+                  <a href="task/{{this.id}}">{{this.description}}</a>
+
                 </li>
 
                 {{/each}}
@@ -53,12 +51,12 @@
               </div>
               <ul id="pendingTask-list" class="list-group list-group-flush list-group">
                 {{#each Tasks}}
-               {{#unless completed}}
+                {{#unless completed}}
                 <li class="list-group-item" data-id="{{this.id}}">
-                  <a href="task/{{this.id}}">{{this.name}}</a>
+                  <a href="task/{{this.id}}">{{this.description}}</a>
                   <button class="btn btn-default btn-sm float-right move pendingBtn">✔</button>
                 </li>
-                          {{/unless}}
+                {{/unless}}
                 {{/each}}
               </ul>
             </div>
@@ -71,13 +69,13 @@
                 <p class="card-text">Tasks that been marked as completed</p>
               </div>
               <ul id="completedTask-list" class="list-group list-group-flush list-group">
-               {{#each Tasks}}
-                  {{#if completed}}
+                {{#each Tasks}}
+                {{#if completed}}
                 <li class="list-group-item completed" data-id="{{this.id}}">
-                  <a href="task/{{this.id}}">{{this.name}}</a>
+                  <a href="task/{{this.id}}">{{this.description}}</a>
                   <button class="btn btn-danger btn-sm float-right delete">✔</button>
                 </li>
-                 {{/if}}
+                {{/if}}
                 {{/each}}
               </ul>
             </div>
@@ -95,7 +93,7 @@
                 <hr>
                 <form class="clearfix mb-4" action="POST">
                   <div class="form-group">
-                    <label for="name-text">Assgin Task To:</label>
+                    <label for="name-text">Assign Task To:</label>
                     <input type="text" id="name-text" class="form-control" aria-describedby="name-text"
                       placeholder="Employee Name">
                   </div>
@@ -109,8 +107,46 @@
 
               </div>
             </div>
-             </div>
+          </div>
+        </div>
+
+        {{!-- Haven't gotten chance to pretty this up yet -Justin --}}
+        <div class="container">
+          <div class="row addTaskRow">
+            <div class="col-8 offset-2">
+              <div class="card">
+                <div class="card-body">
+                  <h3 id="addUser">Add a new user below:</h3>
+                  <hr>
+                  <form class="clearfix mb-4" action="/api/register" method="post" id="registerForm">
+                    <div>
+                      <label>Username:</label>
+                      <input type="text" name="username" />
+                    </div>
+                    <div>
+                      <label>Password:</label>
+                      <input type="password" name="password" />
+                    </div>
+                    <div>
+                      <label>Display Name:</label>
+                      <input type="text" name="displayName" />
+                    </div>
+                    <div>
+                      <label>Email:</label>
+                      <input type="email" name="email" />
+                    </div>
+                    <div>
+                      <input type="submit" value="Create User" class="btn btn-rounded waves-effect btn-default"
+                        style="color:white !important;" />
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
-            <script type="text/javascript"
-              src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <script src="/js/index.js"></script>
+          </div>
+
+
+
+          <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+          <script src="/js/index.js"></script>

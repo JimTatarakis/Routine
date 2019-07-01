@@ -3,13 +3,18 @@ var db = require("../models");
 var exports = module.exports = {}
 
 
-
 exports.index = function (req, res) {
     res.render("index");
 };
 
 exports.login = function (req, res) {
-    res.render("login");
+    var error = req.flash("error")[0];
+    if(error) {
+        res.render("login", {Errors: error});
+    } else {
+        res.render("login");
+    }
+
 };
 
 exports.register = function (req, res) {
