@@ -22,27 +22,30 @@
         </div>
      <div class="container">
         <div class="row taskRow" id="taskIcon">
-          <div class="col-4">
+          <div class="col-md-4 col-xs-1 userCol">
             <div class="card" style="width: 18rem;">
               <img src="images/daily.png" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Daily Tasks</h5>
                 <p class="card-text">List of tasks that must be completed by the end of day.</p>
-              </div>
+             </div>
               <ul id="task-list" class="list-group list-group-flush list-group">
-           {{#each Tasks}}
-  
+                <li class="list-group-item" >check emails</li>
+                <li class="list-group-item" >call on leads</li>
+                <li class="list-group-item" >send out data analytics</li>
+                <li class="list-group-item" >team meeting-morning</li>
+                <li class="list-group-item" >team meeting - EOD</li>
+                <li class="list-group-item">backup files</li>
+                {{!-- {{#each Tasks}}
                 <li class="list-group-item" data-id="{{this.id}}">
                   <a href="task/{{this.id}}">{{this.description}}</a>
-                
-                </li>
-
-                {{/each}}
+                 </li>
+                {{/each}} --}}
               </ul>
             </div>
 
           </div>
-          <div class="col-4">
+          <div class="col-md-4 col-xs-1 userCol">
             <div class="card" style="width: 18rem;">
               <img src="images/pending.png" class="card-img-top" alt="...">
               <div class="card-body">
@@ -61,7 +64,7 @@
               </ul>
             </div>
           </div>
-          <div class="col-4 ">
+          <div class="col-md-4 col-xs-1 userCol">
             <div class="card" style="width: 18rem;">
               <img src="images/completed.png" class="card-img-top" alt="...">
               <div class="card-body">

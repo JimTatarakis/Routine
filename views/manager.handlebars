@@ -13,16 +13,17 @@
       <div class="col-8 offset-2">
         <h1>Hello, Manager!</h1>
         <br>
-        <h4>Would you like to assign a new task?</h4>
+        <h4>What would you like to do?</h4>
         <hr>
         <br>
-        <a href="#addTask"><button class="btn btn-default">YES</button></a>
-        <a href="#taskIcon"><button class="btn btn-default">NO</button></a>
+        <a href="#taskIcon"><button class="btn btn-default">VIEW TASKS</button></a>
+        <a href="#taskZoom"><button class="btn btn-default">ADD TASK</button></a>
+         <a href="#addUser"><button class="btn btn-default">ADD USER</button></a>
         <br><br><br><br>
       </div>
       <div class="container">
         <div class="row taskRow" id="taskIcon">
-          <div class="col-4">
+          <div class="col-md-4 col-xs-1 managerCol">
             <div class="card" style="width: 18rem;">
               <img src="images/daily.png" class="card-img-top" alt="...">
               <div class="card-body">
@@ -30,19 +31,22 @@
                 <p class="card-text">List of tasks that must be completed by the end of day.</p>
               </div>
               <ul id="task-list" class="list-group list-group-flush list-group">
-                {{#each Tasks}}
-
+                <li class="list-group-item" >check emails</li>
+                <li class="list-group-item" >call on leads</li>
+                <li class="list-group-item" >send out data analytics</li>
+                <li class="list-group-item" >team meeting-morning</li>
+                <li class="list-group-item" >team meeting - EOD</li>
+                <li class="list-group-item">backup files</li>
+                {{!-- {{#each Tasks}}
                 <li class="list-group-item" data-id="{{this.id}}">
                   <a href="task/{{this.id}}">{{this.description}}</a>
-
-                </li>
-
-                {{/each}}
+                 </li>
+                {{/each}} --}}
               </ul>
             </div>
 
           </div>
-          <div class="col-4">
+          <div class="col-md-4 col-xs-1 managerCol">
             <div class="card" style="width: 18rem;">
               <img src="images/pending.png" class="card-img-top" alt="...">
               <div class="card-body">
@@ -61,7 +65,7 @@
               </ul>
             </div>
           </div>
-          <div class="col-4 ">
+          <div class="col-md-4 col-xs-1 managerCol">
             <div class="card" style="width: 18rem;">
               <img src="images/completed.png" class="card-img-top" alt="...">
               <div class="card-body">
@@ -84,12 +88,12 @@
 
       </div>
 
-      <div class="container">
-        <div class="row addTaskRow">
-          <div class="col-8 offset-2">
-            <div class="card">
+      <div class="container ">
+        <div id= "taskZoom" class="row addTaskRow">
+          <div class="col-6 addTaskandUser">
+            <div class="card " style= "background-color: rgb(238, 236, 236);">
               <div class="card-body">
-                <h3 id="addTask">Add a new task below:</h3>
+                <h3 class="addTask">Add a new task below:</h3>
                 <hr>
                 <form class="clearfix mb-4" action="POST">
                   <div class="form-group">
@@ -104,35 +108,31 @@
                   </div>
                   <button id="submit" class="btn btn-default float-right">Add Task</button>
                 </form>
-
+              </div>
               </div>
             </div>
           </div>
-        </div>
-
-        {{!-- Haven't gotten chance to pretty this up yet -Justin --}}
-        <div class="container">
-          <div class="row addTaskRow">
-            <div class="col-8 offset-2">
-              <div class="card">
-                <div class="card-body">
-                  <h3 id="addUser">Add a new user below:</h3>
+     <div class="row addTaskRow">
+            <div class="col-6 addTaskandUser">
+              <div class="card" id="userAdded" style= "background-color: rgb(238, 236, 236);">
+                <div class="card-body ">
+                  <h3 class="addTask" id="addUser">Add a new user below:</h3>
                   <hr>
                   <form class="clearfix mb-4" action="/api/register" method="post" id="registerForm">
                     <div>
-                      <label>Username:</label>
+                      <label>Username:</label><br>
                       <input type="text" name="username" />
                     </div>
                     <div>
-                      <label>Password:</label>
+                      <label>Password:</label><br>
                       <input type="password" name="password" />
                     </div>
                     <div>
-                      <label>Display Name:</label>
+                      <label>Display Name:</label><br>
                       <input type="text" name="displayName" />
                     </div>
                     <div>
-                      <label>Email:</label>
+                      <label>Email:</label><br>
                       <input type="email" name="email" />
                     </div>
                     <div>
@@ -144,8 +144,7 @@
               </div>
             </div>
           </div>
-
-
+        </div>
 
           <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
