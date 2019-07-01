@@ -42,7 +42,8 @@ module.exports = function (app) {
       updatedAt: Date.now()
     })
       .then(function (answer) {
-        res.json(answer);
+        var message = "User Created. Please Login";
+        res.render("login", { Message: message });
       })
       .catch(function (err) {
         console.log(err);

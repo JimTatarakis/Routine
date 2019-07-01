@@ -8,8 +8,6 @@
       <ul class="navbar-nav">
         <li><a href="#">FEATURES</a></li>
         <li><a href="#footer">CONTACT</a></li>
-        <li><a href="register">REGISTER</a></li>
-        <li><a href="login">LOGIN</a></li>
       </ul>
     </nav>
     <div class="container">
@@ -35,7 +33,7 @@
            {{#each Tasks}}
   
                 <li class="list-group-item" data-id="{{this.id}}">
-                  <a href="task/{{this.id}}">{{this.name}}</a>
+                  <a href="task/{{this.id}}">{{this.description}}</a>
                 
                 </li>
 
@@ -55,7 +53,7 @@
                 {{#each Tasks}}
                {{#unless completed}}
                 <li class="list-group-item" data-id="{{this.id}}">
-                  <a href="task/{{this.id}}">{{this.name}}</a>
+                  <a href="task/{{this.id}}">{{this.description}}</a>
                   <button class="btn btn-default btn-sm float-right move pendingBtn">✔</button>
                 </li>
                           {{/unless}}
@@ -74,7 +72,7 @@
                {{#each Tasks}}
                   {{#if completed}}
                 <li class="list-group-item completed" data-id="{{this.id}}">
-                  <a href="task/{{this.id}}">{{this.name}}</a>
+                  <a href="task/{{this.id}}">{{this.description}}</a>
                   <button class="btn btn-danger btn-sm float-right delete">✔</button>
                 </li>
                  {{/if}}

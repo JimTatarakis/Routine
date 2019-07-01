@@ -12,14 +12,13 @@
                     <ul class="navbar-nav">
                         <li><a href="#">FEATURES</a></li>
                         <li><a href="#footer">CONTACT</a></li>
-                         <li><a href="register">REGISTER</a></li>
-                        <li><a href="login">LOGIN</a></li>
                     </ul>
                 </nav>
 
                 <!-- <h1>{{msg}}</h1> -->
                       <div class="formAlign">
                 <form action="/login" method="post" id="loginForm">
+                    {{Message}}
                     <div>
                         <label>Username:</label>
                         <input type="text" name="username" />
@@ -28,11 +27,13 @@
                         <label>Password:</label>
                         <input type="password" name="password" />
                     </div>
+                    {{Errors}}
                     <div>
                         <input class="btn btn-rounded waves-effect btn-default" style="color:white !important;"
                             type="submit" value="Log In" />
                         </a>
                     </div>
+                    <div><a href="register">Register</a></div>
                 </form>
                 </div>
                 <img src="/images/login.png" width="500" height="500" id="loginCircle" alt="">

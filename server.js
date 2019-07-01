@@ -3,6 +3,7 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var passport = require("passport");
 var Strategy = require("passport-local").Strategy;
+var flash = require("connect-flash");
 
 var db = require("./models");
 
@@ -14,8 +15,7 @@ passport.use(
       console.log("searching for username");
       if (!user) {
         return done(null, false, { message: "Incorrect username." });
-      }
-      else if (!user.validPassword(password)) {
+      } else if (!user.validPassword(password)) {
         return done(null, false, { message: "Incorrect password." });
       }
       return done(null, user);
@@ -49,8 +49,16 @@ var session = require("express-session"),
   bodyParser = require("body-parser");
 
 app.use(express.static("public"));
-app.use(session({ secret: "cats" }));
+app.use(
+  session({
+    secret: "cats",
+    resave: true,
+    saveUninitialized: true,
+    cookie: { maxAge: 60000 }
+  })
+);
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -63,10 +71,16 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-app.post("/login", passport.authenticate("local", { failureRedirect: "/login" }),
-function(req, res) {
-  res.redirect("/user");
-}
+app.post(
+  "/login",
+  passport.authenticate("local", {
+    successFlash: true,
+    failureFlash: true,
+    failureRedirect: "/login"
+  }),
+  function(req, res) {
+    res.redirect("/user");
+  }
 );
 
 // Routes
