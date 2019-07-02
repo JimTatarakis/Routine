@@ -11,7 +11,7 @@
     </nav>
     <div class="row addTaskRow">
       <div class="col-8 offset-2">
-        <h1>Hello, Manager!</h1>
+        <h1>Welcome, {{Managers}} !</h1>
         <br>
         <h4>What would you like to do?</h4>
         <hr>
@@ -55,6 +55,7 @@
               </div>
               <ul id="pendingTask-list" class="list-group list-group-flush list-group">
                 {{#each Tasks}}
+                 {{!-- {{#each Tasks.name}} --}}
                 {{#unless completed}}
                 <li class="list-group-item" data-id="{{this.id}}">
                   <a href="task/{{this.id}}">{{this.description}}</a>
@@ -62,6 +63,7 @@
                 </li>
                 {{/unless}}
                 {{/each}}
+                  {{!-- {{/each}} --}}
               </ul>
             </div>
           </div>

@@ -293,35 +293,22 @@ body{
 
 @media only screen and (max-width: 480px) {
 
-.registerNav{
-  margin-left: 10%;
-
-}
-
-.mainRow{
-  margin: 0 auto;
-  text-align: center;
-}
-
-#dailyText{
-  font-size: 24px;
-  text-align: center;
+  #mac{
+    height: 240px;
+    width: 200px;
 }
 
 .blob{
- margin: 0 auto;
+  margin-top: 20%;
+  margin-bottom: 20%;
 }
 
-.navbar-nav{
-  margin-left: 0;
+#dailyText{
+  font-size: 20px;
 }
 
-
-#theBlob{
-  height: 270px;
-  width: 270px;
-  margin-right: 20px;
-
+#simpleText{
+    font-size: 24px;
 }
 
 }

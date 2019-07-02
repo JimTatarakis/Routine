@@ -15,9 +15,9 @@ $(document).ready(function () {
     newTask: function () {
       return $.ajax({
         url: "api/tasks",
-        type: "POST"
-    
-      });
+        type: "POST",
+        data: handleFormSubmit
+      })
     },
    
     getTask: function () {
@@ -50,7 +50,7 @@ $(document).ready(function () {
     var task = {
       name: $employeeName.val().trim(),
       description: $employeeName.val().trim(),
-      completed: false
+      completed: false,
     };
 
     if (!(task.name && task.description)) {
@@ -59,8 +59,9 @@ $(document).ready(function () {
     }
 
     API.newTask(task).then(function () {
+
       console.log("new task" + task)
-      location.reload();
+      // location.reload();
 
     })
     $employeeName.val("");

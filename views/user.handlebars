@@ -13,7 +13,7 @@
     <div class="container">
       <div class="row userHi">
         <div class="col-8 offset-2" style="text-align:center;">
-          <h1>Welcome!</h1>
+          <h1>Welcome, {{Users}}!</h1>
           <br>
           <h4>View daily tasks below:</h4>
           <hr>
@@ -59,7 +59,7 @@
                   <a href="task/{{this.id}}">{{this.description}}</a>
                   <button class="btn btn-default btn-sm float-right move pendingBtn">✔</button>
                 </li>
-                          {{/unless}}
+                {{/unless}}
                 {{/each}}
               </ul>
             </div>

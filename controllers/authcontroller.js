@@ -21,17 +21,36 @@ exports.register = function (req, res) {
     res.render("register");
 };
 
+// exports.manager = function (req, res) {
+//     db.Task.findAll().then(data => {
+//         res.render('manager', {Tasks:data})
+//       })
+// };
+
+// exports.user = function (req, res) {
+//     db.Task.findAll().then(data => {
+//         res.render('user', {Tasks:data})
+//       })
+// };
+
+
+
 exports.manager = function (req, res) {
     db.Task.findAll().then(data => {
-        res.render('manager', {Tasks:data})
-      })
+        var manager = req.body.name;
+        res.render('manager', {Tasks: data, Managers: manager});
+    }) 
 };
 
 exports.user = function (req, res) {
     db.Task.findAll().then(data => {
-        res.render('user', {Tasks:data})
-      })
+        console.log(req.user.displayName);
+        var user = req.user.displayName;
+        res.render('user', {Tasks: data, Users: user});
+    }) 
 };
+
+
 
 exports.logout = function (req, res) {
     req.session.destroy(function (err) {
