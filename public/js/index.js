@@ -12,7 +12,7 @@ $(document).ready(function () {
   // The API object contains methods for each kind of request we'll make
   var API = {
 
-    newTask: function () {
+    newTask: function (handleFormSubmit) {
       return $.ajax({
         url: "api/tasks",
         type: "POST",
@@ -61,7 +61,7 @@ $(document).ready(function () {
     API.newTask(task).then(function () {
 
       console.log("new task" + task)
-      // location.reload();
+      location.reload();
 
     })
     $employeeName.val("");
