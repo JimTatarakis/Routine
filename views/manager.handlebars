@@ -18,7 +18,7 @@
         <br>
         <a href="#taskIcon"><button class="btn btn-default">VIEW TASKS</button></a>
         <a href="#taskZoom"><button class="btn btn-default">ADD TASK</button></a>
-         <a href="#addUser"><button class="btn btn-default">ADD USER</button></a>
+        <a href="#addUser"><button class="btn btn-default">ADD USER</button></a>
         <br><br><br><br>
       </div>
       <div class="container">
@@ -31,11 +31,11 @@
                 <p class="card-text">List of tasks that must be completed by the end of day.</p>
               </div>
               <ul id="task-list" class="list-group list-group-flush list-group">
-                <li class="list-group-item" >check emails</li>
-                <li class="list-group-item" >call on leads</li>
-                <li class="list-group-item" >send out data analytics</li>
-                <li class="list-group-item" >team meeting-morning</li>
-                <li class="list-group-item" >team meeting - EOD</li>
+                <li class="list-group-item">check emails</li>
+                <li class="list-group-item">call on leads</li>
+                <li class="list-group-item">send out data analytics</li>
+                <li class="list-group-item">team meeting-morning</li>
+                <li class="list-group-item">team meeting - EOD</li>
                 <li class="list-group-item">backup files</li>
                 {{!-- {{#each Tasks}}
                 <li class="list-group-item" data-id="{{this.id}}">
@@ -55,7 +55,7 @@
               </div>
               <ul id="pendingTask-list" class="list-group list-group-flush list-group">
                 {{#each Tasks}}
-                 {{!-- {{#each Tasks.name}} --}}
+                {{!-- {{#each Tasks.name}} --}}
                 {{#unless completed}}
                 <li class="list-group-item" data-id="{{this.id}}">
                   <a href="task/{{this.id}}">{{this.description}}</a>
@@ -63,7 +63,7 @@
                 </li>
                 {{/unless}}
                 {{/each}}
-                  {{!-- {{/each}} --}}
+                {{!-- {{/each}} --}}
               </ul>
             </div>
           </div>
@@ -91,9 +91,9 @@
       </div>
 
       <div class="container ">
-        <div id= "taskZoom" class="row addTaskRow">
+        <div id="taskZoom" class="row addTaskRow">
           <div class="col-6 addTaskandUser">
-            <div class="card " style= "background-color: rgb(238, 236, 236);">
+            <div class="card " style="background-color: rgb(238, 236, 236);">
               <div class="card-body">
                 <h3 class="addTask">Add a new task below:</h3>
                 <hr>
@@ -111,43 +111,46 @@
                   <button id="submit" class="btn btn-default float-right">Add Task</button>
                 </form>
               </div>
-              </div>
             </div>
           </div>
-     <div class="row addTaskRow">
-            <div class="col-6 addTaskandUser">
-              <div class="card" id="userAdded" style= "background-color: rgb(238, 236, 236);">
-                <div class="card-body ">
-                  <h3 class="addTask" id="addUser">Add a new user below:</h3>
-                  <hr>
-                  <form class="clearfix mb-4" action="/api/users/register" method="post" id="registerForm">
-                    <div>
-                      <label>Username:</label><br>
-                      <input type="text" name="username" />
-                    </div>
-                    <div>
-                      <label>Password:</label><br>
-                      <input type="password" name="password" />
-                    </div>
-                    <div>
-                      <label>Display Name:</label><br>
-                      <input type="text" name="displayName" />
-                    </div>
-                    <div>
-                      <label>Email:</label><br>
-                      <input type="email" name="email" />
-                    </div>
-                    <div>
-                      <input type="submit" value="Create User" class="btn btn-rounded waves-effect btn-default"
-                        style="color:white !important;" />
-                    </div>
-                  </form>
-                </div>
+        </div>
+        <div class="row addTaskRow">
+          <div class="col-6 addTaskandUser">
+            <div class="card" id="userAdded" style="background-color: rgb(238, 236, 236);">
+              <div class="card-body ">
+                <h3 class="addTask" id="addUser">Add a new user below:</h3>
+                <hr>
+                <form class="clearfix mb-4" action="/api/users/register2" method="post" id="registerForm">
+                  <div>
+                    <label>Username:</label><br>
+                    <input type="text" name="username" />
+                  </div>
+                  <div>
+                    <label>Password:</label><br>
+                    <input type="password" name="password" />
+                  </div>
+                  <div>
+                    <label>Display Name:</label><br>
+                    <input type="text" name="displayName" />
+                  </div>
+                  <div>
+                    <label>Email:</label><br>
+                    <input type="email" name="email" />
+                  </div>
+                  <div>
+                    <label>Enter secret code to make this a manager login:</label>
+                    <input type="text" name="secret" />
+                  </div>
+                  <div>
+                    <input type="submit" value="Create User" class="btn btn-rounded waves-effect btn-default"
+                      style="color:white !important;" />
+                  </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-          <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-          <script src="/js/index.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="/js/index.js"></script>
