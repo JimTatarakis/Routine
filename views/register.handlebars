@@ -19,7 +19,7 @@
                 <!-- <h1>{{msg}}</h1> -->
 
         <div class="formAlign">
-                <form action="/api/register" method="post" id="registeredForm" >
+                <form action="/api/users/register" method="post" id="registeredForm" >
         <div>
             <label>Username:</label>
             <input type="text" name="username" />
@@ -37,6 +37,10 @@
             <input type="email" name="email" />
         </div>
         <div>
+            <label>Secret:</label>
+            <input type="text" name="secret" />
+        </div>
+        <div>
             <input type="submit" value="Create User" class="btn btn-rounded waves-effect btn-default" style="color:white !important;"/>
         </div>
     </form>
@@ -51,4 +55,4 @@
 
 </div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>`
+<script src="/js/index.js"></script>

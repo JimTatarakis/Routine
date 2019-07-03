@@ -36,8 +36,9 @@ exports.register = function (req, res) {
     
 exports.manager = function (req, res) {
     db.Task.findAll().then(data => {
-        var manager = req.body.name;
-        res.render('manager', {Tasks: data, Managers: manager});
+        console.log(req.user.displayName);
+        var user = req.user.displayName;
+        res.render('manager', {Tasks: data, Users: user});
     }) 
 };
 
