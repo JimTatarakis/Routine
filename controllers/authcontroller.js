@@ -21,6 +21,22 @@ exports.register = function (req, res) {
     res.render("register");
 };
 
+<<<<<<< HEAD
+=======
+// exports.manager = function (req, res) {
+//     db.Task.findAll().then(data => {
+//         res.render('manager', {Tasks:data})
+//       })
+// };
+
+// exports.user = function (req, res) {
+//     db.Task.findAll().then(data => {
+//         res.render('user', {Tasks:data})
+//       })
+// };
+
+    
+>>>>>>> 9e297e7b0ea868e5d157f572c1560e37e1defc93
 exports.manager = function (req, res) {
     let user = req.user.displayName;
     db.User.findAll().then(data1 => {
@@ -30,6 +46,12 @@ exports.manager = function (req, res) {
     })
 };
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 9e297e7b0ea868e5d157f572c1560e37e1defc93
 
 exports.user = function (req, res) {
     db.Task.findAll().then(data => {
