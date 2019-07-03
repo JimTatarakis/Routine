@@ -1,4 +1,4 @@
-INSERT INTO User (username, password, displayName, email)
+INSERT INTO Users (username, password, displayName, email)
 VALUES ("justin", "justin4", "JUSTIN THE CODER", "justin@mail.com");
 
 INSERT INTO Tasks (name, description, completed, createdAt, updatedAt)
