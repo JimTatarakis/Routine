@@ -27,21 +27,18 @@
             <div class="card" style="width: 18rem;">
               <img src="images/daily.png" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">Daily Tasks</h5>
+                <h5 class="card-title">Your Tasks</h5>
                 <p class="card-text">List of tasks that must be completed by the end of day.</p>
               </div>
               <ul id="task-list" class="list-group list-group-flush list-group">
-                <li class="list-group-item">check emails</li>
-                <li class="list-group-item">call on leads</li>
-                <li class="list-group-item">send out data analytics</li>
-                <li class="list-group-item">team meeting-morning</li>
-                <li class="list-group-item">team meeting - EOD</li>
-                <li class="list-group-item">backup files</li>
-                {{!-- {{#each Tasks}}
+                {{#each Tasks}}
+                 {{#if this.UserId}}
                 <li class="list-group-item" data-id="{{this.id}}">
                   <a href="task/{{this.id}}">{{this.description}}</a>
+                  <button class="btn btn-danger btn-sm float-right move">✔</button>
                  </li>
-                {{/each}} --}}
+                 {{/if}}
+                {{/each}}
               </ul>
             </div>
 
@@ -50,12 +47,11 @@
             <div class="card" style="width: 18rem;">
               <img src="images/pending.png" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">Pending Tasks</h5>
+                <h5 class="card-title">Open Company Tasks</h5>
                 <p class="card-text">Tasks that still need to be completed by end of day.</p>
               </div>
               <ul id="pendingTask-list" class="list-group list-group-flush list-group">
                 {{#each Tasks}}
-                {{!-- {{#each Tasks.name}} --}}
                 {{#unless completed}}
                 <li class="list-group-item" data-id="{{this.id}}">
                   <a href="task/{{this.id}}">{{this.description}}</a>
@@ -63,7 +59,7 @@
                 </li>
                 {{/unless}}
                 {{/each}}
-                {{!-- {{/each}} --}}
+    
               </ul>
             </div>
           </div>
@@ -71,15 +67,16 @@
             <div class="card" style="width: 18rem;">
               <img src="images/completed.png" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">Completed Tasks Tasks</h5>
+                <h5 class="card-title">Completed Tasks </h5>
                 <p class="card-text">Tasks that been marked as completed</p>
               </div>
               <ul id="completedTask-list" class="list-group list-group-flush list-group">
                 {{#each Tasks}}
                 {{#if completed}}
-                <li class="list-group-item completed" data-id="{{this.id}}">
+               <li class="list-group-item completed" data-id="{{this.id}}">
                   <a href="task/{{this.id}}">{{this.description}}</a>
-                  <button class="btn btn-danger btn-sm float-right delete">✔</button>
+                   <a href="task/{{this.id}}" id="assignedName">{{this.name}}</a>
+                  {{!-- <button class="btn btn-danger btn-sm float-right delete">✔</button> --}}
                 </li>
                 {{/if}}
                 {{/each}}

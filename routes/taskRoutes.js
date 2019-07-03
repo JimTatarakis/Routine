@@ -26,7 +26,7 @@ module.exports = (app) => {
     });
 
     // PUT route: Assign User to Task by id
-    app.put("/api/tasks/:id", function (req, res) {
+    app.put("/api/tasks/assign/:id", function (req, res) {
         db.Task.update(
             {
                 // this references the selected person
@@ -78,4 +78,6 @@ module.exports = (app) => {
         });
     });
 
+
 };
+
