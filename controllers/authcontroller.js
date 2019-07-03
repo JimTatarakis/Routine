@@ -9,8 +9,8 @@ exports.index = function (req, res) {
 
 exports.login = function (req, res) {
     var error = req.flash("error")[0];
-    if(error) {
-        res.render("login", {Errors: error});
+    if (error) {
+        res.render("login", { Errors: error });
     } else {
         res.render("login");
     }
@@ -22,24 +22,24 @@ exports.register = function (req, res) {
 };
 
 exports.manager = function (req, res) {
-      let User = () => {
-        db.User.findAll().then(data => {
-            return data;
+    let user = req.user.displayName;
+    db.User.findAll().then(data1 => {
+        db.Task.findAll().then(data2 => {
+            res.render('manager', {User: data1, Tasks: data2, Users: user})
         })
-      }
-      let Tasks = () => {
-        db.Tasks.findAll().then(data => {
-            return data;
-        })
-      }
-      res.render('manager', {data: {User:User, Tasks:Tasks}})
+    })
 };
+
 
 exports.user = function (req, res) {
     db.Task.findAll().then(data => {
-        res.render('user', {Tasks:data})
-      })
+        console.log(req.user.displayName);
+        var user = req.user.displayName;
+        res.render('user', { Tasks: data, Users: user });
+    })
 };
+
+
 
 exports.logout = function (req, res) {
     req.session.destroy(function (err) {
@@ -48,4 +48,3 @@ exports.logout = function (req, res) {
 }
 
 
- 

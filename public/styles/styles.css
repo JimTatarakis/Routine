@@ -4,7 +4,6 @@
 }
 
 .home, #login, #manager, #user{
-  max-width: 1280px;
   width: 100%;
 }
 
@@ -14,6 +13,7 @@
 
 body{
   height: 100%;
+  width: 100%;
 }
 
 .navbar{
@@ -21,12 +21,12 @@ body{
 }
 
 .headerText{
-  margin-top: 25%;
+  margin-top: 30%;
 }
 
-.container{
+/* .container{
   padding-left: 30px !important;
-}
+} */
 
 #dailyText{
   font-size: 24px;
@@ -35,19 +35,23 @@ body{
 }
 
 .blob{
-  margin-top: 10%;
+  margin-top: 15%;
   z-index: -1;
   position: relative;
 }
 
 .navbar-nav{
-  margin-left: 50%;
+  margin-left: 70%;
   color: #ee826c;
   text-decoration: none;
 }
 
 li{
   padding: 0 15px;
+}
+
+.list-inline-item{
+  padding: 0 55px;
 }
 
 a{
@@ -100,17 +104,16 @@ margin: 190px auto;
 text-align: center;
 }
 
-#registerForm{
+#registeredForm{
   text-align: right;
   position: absolute;
-  margin: 170px auto;
-  width: 58%;
+  margin: 15% auto;
+  width: 60%;
 }
 
-/* .list-group-item {
-  line-height: 2.5;
-} */
-
+#registerForm{
+  text-align: center;
+}
 .taskRow{
   margin-top: 100px;
 }
@@ -120,16 +123,24 @@ margin-top: 100px;
 text-align: center;
 }
 
-#addTask{
-  margin-top: 100px;
+.addTask{
+  margin-top: 50px;
 }
 
+#userAdded{
+  margin-bottom: 200px;
+}
+
+.addTaskandUser{
+  width: 100%;
+  margin: 0 auto;
+}
 .viewAllSection{
   margin-top: 50px;
 }
 
 footer{
-  padding-top:80px;
+  padding-top:110px;
   height: 50px;
   left: 0;
   bottom: 0;
@@ -145,4 +156,159 @@ footer{
 .error{
   margin-top: 100px;
   text-align: center;
+}
+
+.registerNav{
+  margin-left: 55%;
+  
+  }
+
+/* ---------------------------RESPONSIVE DESIGN-----------------------------------*/
+
+
+
+@media only screen and (max-width: 992px) {
+
+  .navbar-nav{
+    margin-left: 60%;
+  }
+  
+  li{
+    padding: 0 10px;
+  }
+
+  .headerText{
+    margin-top: 35%;
+  }
+
+  #dailyText{
+    font-size: 24px;
+  }
+  
+  .blob{
+    margin-top: 18%;
+  }
+  
+  footer{
+    padding-top: 20px;
+  
+  }
+  #registeredForm{
+    margin: 35% 5%;  
+  }
+
+  #loginCircle{
+    margin-top: 10%;
+    width: 70%;
+    margin: 10% auto;
+   }
+.registerNav{
+margin-left: 45%;
+
+}
+}
+
+
+@media only screen and (max-width: 768px) {
+#mac{
+    height: 240px;
+    width: 200px;
+}
+
+.blob{
+  margin-top: 50%;
+  margin-bottom: 20%;
+}
+
+#dailyText{
+  font-size: 20px;
+}
+
+#simpleText{
+    font-size: 24px;
+}
+  
+
+#theBlob{
+  height: 300px;
+  width: 300px;
+
+}
+
+.headerText{
+  margin-top: 70%;
+  
+}
+ 
+footer{
+  padding-top: 0px;
+
+}
+
+.navbar-nav{
+  margin-left: 50%;
+
+}
+#loginCircle{
+  margin-top: 15%;
+  width: 80%;
+ }
+
+ #loginForm{
+  margin-top: 50%;
+ }
+
+.card{
+  width: 100%;
+  height: auto
+}
+
+.userCol .card{
+text-align: center;
+margin: 0 auto;
+margin-bottom: 50px;
+}
+
+.managerCol .card{
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  }
+
+
+
+#registeredForm{
+  margin: 230px auto 230px 55px;
+
+}
+
+.registerNav{
+margin-left: 45%;
+
+}
+body{ 
+  background: red;
+}
+}
+
+@media only screen and (max-width: 480px) {
+
+  #mac{
+    height: 240px;
+    width: 200px;
+}
+
+.blob{
+  margin-top: 20%;
+  margin-bottom: 20%;
+}
+
+#dailyText{
+  font-size: 20px;
+}
+
+#simpleText{
+    font-size: 24px;
+}
+
 }

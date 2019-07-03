@@ -1,6 +1,3 @@
-INSERT INTO Users (username, password, displayName, email)
-VALUES ("justin", "justin4", "JUSTIN THE CODER", "justin@mail.com");
-
 INSERT INTO Tasks (name, description, completed, createdAt, updatedAt)
 VALUES ("Tim", "check emails", false , 1234-01-02, 1234-01-02);
 INSERT INTO Tasks (name, description, completed, createdAt, updatedAt)
