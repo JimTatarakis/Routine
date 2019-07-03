@@ -33,14 +33,17 @@ exports.register = function (req, res) {
 //       })
 // };
 
-
-
+    
 exports.manager = function (req, res) {
     db.Task.findAll().then(data => {
         var manager = req.body.name;
         res.render('manager', {Tasks: data, Managers: manager});
     }) 
 };
+
+
+
+
 
 exports.user = function (req, res) {
     db.Task.findAll().then(data => {

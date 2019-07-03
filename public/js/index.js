@@ -80,6 +80,7 @@ var handleDeleteBtnClick = function () {
   };
 
   var completeBtnClick = function () {
+    
     var idToMove = $(this)
       .parent()
       .attr("data-id");
@@ -94,6 +95,6 @@ var handleDeleteBtnClick = function () {
 
   $submitBtn.on("click", handleFormSubmit);
   $pendingList.on("click", ".move", completeBtnClick); 
-  $completedList.on("click", ".delete", handleDeleteBtnClick);
+  $newTaskList.on("click", ".move", completeBtnClick); 
 });
 
