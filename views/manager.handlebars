@@ -32,10 +32,12 @@
               </div>
               <ul id="task-list" class="list-group list-group-flush list-group">
                 {{#each Tasks}}
+                {{#unless completed}}
                 <li class="list-group-item" data-id="{{this.id}}">
                   <a href="task/{{this.id}}">{{this.description}}</a>
                   <button class="btn btn-danger btn-sm float-right move">✔</button>
                  </li>
+                 {{/unless}}
                 {{/each}}
               </ul>
             </div>
