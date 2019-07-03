@@ -25,7 +25,10 @@ module.exports = function (app) {
   app.post("/api/tasks", function (req, res) {
     db.Task.create({
       name: req.body.name,
-      completed: false
+      description: req.body.description,
+      completed: false,
+      createdAt: Date.now(),
+      updatedAt: Date.now()
     }).then(function (answer) {
       res.json(answer);
     });
@@ -42,20 +45,20 @@ module.exports = function (app) {
       updatedAt: Date.now()
     })
       .then(function (answer) {
-        res.json(answer);
+        var message = "User Created. Please Login";
+        res.render("login", { Message: message });
       })
       .catch(function (err) {
         console.log(err);
-        // window.alert(err);
-        // location.reload();
+
       });
   });
 
   // DELETE route
-  app.delete("/api/tasks/completed/", function (req, res) {
+  app.delete("/api/tasks/delete/:id", function (req, res) {
     db.Task.destroy({
       where: {
-        completed: true
+        id: req.params.id
       }
     }).then(function (data) {
       res.json({ delete: true });

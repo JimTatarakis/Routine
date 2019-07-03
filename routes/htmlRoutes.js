@@ -6,7 +6,6 @@ module.exports = function (app, passport) {
   app.get("/", authController.index);
 
   app.get("/login", authController.login);
-
  
   app.get("/user", isLoggedIn, authController.user);
 
