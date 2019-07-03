@@ -19,7 +19,8 @@ module.exports = (app) => {
         db.Task.create({
             name: req.body.name,
             completed: false,
-            description: req.body.description
+            description: req.body.description,
+            UserId: req.body.UserId
         }).then(function (answer) {
             res.json(answer);
         });

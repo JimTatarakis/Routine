@@ -22,9 +22,17 @@ exports.register = function (req, res) {
 };
 
 exports.manager = function (req, res) {
-    db.Task.findAll().then(data => {
-        res.render('manager', {Tasks:data})
-      })
+      let User = () => {
+        db.User.findAll().then(data => {
+            return data;
+        })
+      }
+      let Tasks = () => {
+        db.Tasks.findAll().then(data => {
+            return data;
+        })
+      }
+      res.render('manager', {data: {User:User, Tasks:Tasks}})
 };
 
 exports.user = function (req, res) {

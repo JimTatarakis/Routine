@@ -30,7 +30,7 @@
                 <p class="card-text">List of tasks that must be completed by the end of day.</p>
               </div>
               <ul id="task-list" class="list-group list-group-flush list-group">
-                {{#each Tasks}}
+                {{#each Data.Tasks}}
 
                 <li class="list-group-item" data-id="{{this.id}}">
                   <a href="task/{{this.id}}">{{this.description}}</a>
@@ -50,7 +50,7 @@
                 <p class="card-text">Tasks that still need to be completed by end of day.</p>
               </div>
               <ul id="pendingTask-list" class="list-group list-group-flush list-group">
-                {{#each Tasks}}
+                {{#each Data.Tasks}}
                 {{#unless completed}}
                 <li class="list-group-item" data-id="{{this.id}}">
                   <a href="task/{{this.id}}">{{this.description}}</a>
@@ -69,7 +69,7 @@
                 <p class="card-text">Tasks that been marked as completed</p>
               </div>
               <ul id="completedTask-list" class="list-group list-group-flush list-group">
-                {{#each Tasks}}
+                {{#each Data.Tasks}}
                 {{#if completed}}
                 <li class="list-group-item completed" data-id="{{this.id}}">
                   <a href="task/{{this.id}}">{{this.description}}</a>
@@ -93,9 +93,16 @@
                 <hr>
                 <form class="clearfix mb-4" action="POST">
                   <div class="form-group">
-                    <label for="name-text">Assign Task To:</label>
+                    {{!-- <label for="name-text">Assign Task To:</label>
                     <input type="text" id="name-text" class="form-control" aria-describedby="name-text"
-                      placeholder="Employee Name">
+                      placeholder="Employee Name"> --}}
+                    <label for="UserId">Employee List:</label>
+                    <select class="form-control" id="UserId">
+                      {{!-- insert for each grabbing all users  --}}
+                      {{#each Data.User}}
+                      <option UserId= "{{this.id}}">{{this.username}}</option>
+                      {{/each}}
+                    </select>
                   </div>
                   <div class="form-group">
                     <label for="example-description">Description of Task:</label>
