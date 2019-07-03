@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
   // Get references to page elements
-  var $employeeName = $("#name-text");
+  var $employeeName = $("#UserId");
   var $exampleDescription = $("#example-description");
   var $submitBtn = $("#submit");
   var $newTaskList = $("#task-list");
@@ -39,6 +39,12 @@ $(document).ready(function () {
         type: "PUT"
        
       });
+    },
+    assignTask: function (id) {
+      return $.ajax({
+        url: "api/tasks/assign/" + id,
+        type: "PUT"
+      });
     }
   };
 
@@ -49,7 +55,7 @@ $(document).ready(function () {
 
     var task = {
       name: $employeeName.val().trim(),
-      description: $employeeName.val().trim(),
+      description: $exampleDescription.val().trim(),
       completed: false,
     };
 
