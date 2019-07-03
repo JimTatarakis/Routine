@@ -33,7 +33,8 @@ module.exports = (app) => {
             displayName: req.body.displayName,
             email: req.body.email,
             createdAt: Date.now(),
-            updatedAt: Date.now()
+            updatedAt: Date.now(),
+            manager: null
         })
             .then(function (answer) {
                 res.json(answer);

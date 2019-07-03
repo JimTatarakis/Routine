@@ -79,7 +79,12 @@ app.post(
     failureRedirect: "/login"
   }),
   function(req, res) {
-    res.redirect("/user");
+    console.log(req.user.manager);
+    if (req.user.manager) {
+      res.redirect("/manager");
+    } else {
+      res.redirect("/user");
+    }
   }
 );
 

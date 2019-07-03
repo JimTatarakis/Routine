@@ -11,7 +11,7 @@
     </nav>
     <div class="row addTaskRow">
       <div class="col-8 offset-2">
-        <h1>Welcome, {{Managers}} !</h1>
+        <h1>Welcome, {{Users}} !</h1>
         <br>
         <h4>What would you like to do?</h4>
         <hr>
@@ -120,7 +120,7 @@
                 <div class="card-body ">
                   <h3 class="addTask" id="addUser">Add a new user below:</h3>
                   <hr>
-                  <form class="clearfix mb-4" action="/api/register" method="post" id="registerForm">
+                  <form class="clearfix mb-4" action="/api/users/register" method="post" id="registerForm">
                     <div>
                       <label>Username:</label><br>
                       <input type="text" name="username" />
