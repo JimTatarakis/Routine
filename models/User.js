@@ -36,6 +36,14 @@ module.exports = function(sequelize, DataTypes) {
           msg: "Email address must be valid"
         }
       }
+    },
+    manager: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
+    managedBy: {
+      type: DataTypes.STRING,
+      allowNull: true
     }
   });
 
