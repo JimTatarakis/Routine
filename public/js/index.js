@@ -52,12 +52,16 @@ $(document).ready(function () {
   var handleFormSubmit = function (event) {
 
     event.preventDefault();
+    console.log($employeeName.val());
 
     var task = {
-      name: $employeeName.val().trim(),
+      name: $employeeName.find('option:selected').text().trim(),
       description: $exampleDescription.val().trim(),
       completed: false,
+      UserId: $employeeName.find('option:selected').val().trim(),
     };
+
+    console.log(task)
 
     if (!(task.name && task.description)) {
       alert("You must enter a name and description!");
@@ -65,13 +69,8 @@ $(document).ready(function () {
     }
 
     API.newTask(task).then(function () {
-
-      console.log("new task" + task)
       location.reload();
-
     })
-    $employeeName.val("");
-    $exampleDescription.val("");
   };
 
 

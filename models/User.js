@@ -70,9 +70,7 @@ module.exports = function(sequelize, DataTypes) {
 
   // Associate to tasks
   User.associate = function(models) {
-    User.hasMany(models.Task, {
-      onDelete: "cascade"
-    });
+    User.hasMany(models.Task);
   };
 
   return User;
