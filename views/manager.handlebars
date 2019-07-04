@@ -72,7 +72,7 @@
                 {{#if completed}}
                <li class="list-group-item completed" data-id="{{this.id}}">
                   <a href="task/{{this.id}}">{{this.description}}</a>
-                   <a href="task/{{this.id}}" id="assignedName">{{this.name}}</a>
+                   
                   {{!-- <button class="btn btn-danger btn-sm float-right delete">✔</button> --}}
                 </li>
                 {{/if}}
@@ -93,14 +93,11 @@
                 <hr>
                 <form class="clearfix mb-4" action="POST">
                   <div class="form-group">
-                    {{!-- <label for="name-text">Assign Task To:</label>
-                    <input type="text" id="name-text" class="form-control" aria-describedby="name-text"
-                      placeholder="Employee Name"> --}}
                     <label for="UserId">Employee List:</label>
-                    <select class="form-control" id="UserId">
+                    <select name="UserId" class="form-control target" id="UserId">
                       {{!-- insert for each grabbing all users  --}}
                       {{#each User}}
-                      <option UserId= "{{this.id}}">{{this.username}}</option>
+                      <option value= "{{this.id}}">{{this.displayName}}</option>
                       {{/each}}
                     </select>
                   </div>

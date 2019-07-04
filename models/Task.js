@@ -1,3 +1,4 @@
+
 module.exports = function(sequelize, DataTypes) {
   var Task = sequelize.define("Task", {
     name: {
@@ -17,15 +18,16 @@ module.exports = function(sequelize, DataTypes) {
     completed: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
+    },
+    UserId: {
+      type: DataTypes.INTEGER
     }
   });
+
   // Associate to User
   Task.associate = function(models) {
-    Task.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: true
-      }
-    });
+    Task.belongsTo(models.User);
   };
+  
   return Task;
 };
