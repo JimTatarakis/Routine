@@ -20,5 +20,5 @@ Track routine daily business tasks.  Manager will be able to add tasks and assig
 
 ## Authors
 * **Kelli Dragon** - *Initial Work* - [kellidragon](https://github.com/kellidragon)
-* **Justin Raithel** - *Initi/al Work* - [jeraithel](https://github.com/jeraithel)
+* **Justin Raithel** - *Initial Work* - [jeraithel](https://github.com/jeraithel)
 * **Jim Tatarakis** - *Initial Work* - [JimTatarakis](https://github.com/JimTatarakis)

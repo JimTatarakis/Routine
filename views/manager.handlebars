@@ -11,7 +11,7 @@
     </nav>
     <div class="row addTaskRow">
       <div class="col-8 offset-2">
-        <h1>Welcome, {{Users}} !</h1>
+        <h1>Welcome, {{Users.displayName}}!</h1>
         <br>
         <h4>What would you like to do?</h4>
         <hr>
@@ -31,11 +31,14 @@
                 <p class="card-text">List of tasks that must be completed by the end of day.</p>
               </div>
               <ul id="task-list" class="list-group list-group-flush list-group">
-                {{#each Tasks}}
+                {{#each PTasks}}
+                {{#unless completed}}
                 <li class="list-group-item" data-id="{{this.id}}">
-                  <a href="task/{{this.id}}">{{this.description}}</a>
+                  {{!-- <a href="task/{{this.id}}">{{this.description}}</a> --}}
+                  {{this.description}}
                   <button class="btn btn-danger btn-sm float-right move">✔</button>
                 </li>
+                {{/unless}}
                 {{/each}}
               </ul>
             </div>
@@ -52,7 +55,8 @@
                 {{#each Tasks}}
                 {{#unless completed}}
                 <li class="list-group-item" data-id="{{this.id}}">
-                  <a href="task/{{this.id}}">{{this.description}}</a>
+                  {{!-- <a href="task/{{this.id}}">{{this.description}}</a> --}}
+                  {{this.description}} ({{this.name}})
                   <button class="btn btn-default btn-sm float-right move pendingBtn">✔</button>
                 </li>
                 {{/unless}}
@@ -71,8 +75,9 @@
                 {{#each Tasks}}
                 {{#if completed}}
                 <li class="list-group-item completed" data-id="{{this.id}}">
-                  <a href="task/{{this.id}}">{{this.description}}</a>
-                  <a href="task/{{this.id}}" id="assignedName">{{this.name}}</a>
+                  {{!-- <a href="task/{{this.id}}">{{this.description}}</a> --}}
+                  {{this.description}} --- {{this.name}}
+                  {{!-- <a href="task/{{this.id}}" id="assignedName">{{this.name}}</a> --}}
                   {{!-- <button class="btn btn-danger btn-sm float-right delete">✔</button> --}}
                 </li>
                 {{/if}}
